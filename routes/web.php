@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TablesCotroller;
+use App\Http\Controllers\CategoriesCotroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+    Route::resource('/table', TablesCotroller::class);
+    Route::resource('/categories', CategoriesCotroller::class);
+
