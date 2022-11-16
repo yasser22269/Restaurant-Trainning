@@ -11,16 +11,16 @@
                 </a>
             </div>
             <div class="menu-item">
-                <a href="analytics.html" class="menu-link">
-                    <span class="menu-icon"><i class="bi bi-bar-chart"></i></span>
-                    <span class="menu-text">Analytics</span>
+                <a href="{{ url('/table') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-table"></i></span>
+                    <span class="menu-text">Tables</span>
                 </a>
             </div>
             <div class="menu-item has-sub">
                 <a href="#" class="menu-link">
-							<span class="menu-icon">
-								<i class="bi bi-envelope"></i>
-							</span>
+                    <span class="menu-icon">
+                        <i class="bi bi-envelope"></i>
+                    </span>
                     <span class="menu-text">Email</span>
                     <span class="menu-caret"><b class="caret"></b></span>
                 </a>
