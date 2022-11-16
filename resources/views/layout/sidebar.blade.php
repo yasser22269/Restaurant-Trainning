@@ -16,6 +16,12 @@
                     <span class="menu-text">Tables</span>
                 </a>
             </div>
+            <div class="menu-item">
+                <a href="{{ url('/categories') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-book"></i></span>
+                    <span class="menu-text">Categories</span>
+                </a>
+            </div>
             <div class="menu-item has-sub">
                 <a href="#" class="menu-link">
                     <span class="menu-icon">

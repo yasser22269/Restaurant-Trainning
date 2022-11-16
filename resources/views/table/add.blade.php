@@ -21,7 +21,7 @@
                 @endif
                 <div class="card">
                     <div class="card-header d-flex align-items-center bg-white bg-opacity-15 fw-400">
-                        Product Information
+                        Create Table
                     </div>
                     <div class="card-body">
                         <form action="{{ route('table.store', 'test') }}" method="post">

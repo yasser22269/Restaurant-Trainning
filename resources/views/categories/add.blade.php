@@ -21,39 +21,26 @@
                 @endif
                 <div class="card">
                     <div class="card-header d-flex align-items-center bg-white bg-opacity-15 fw-400">
-                        Update Table {{ $tables->name }}
+                        Create Categories
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('table.update', $tables->id) }}" method="post">
-                            {{ method_field('patch') }}
+                        <form action="{{ route('categories.store', 'test') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="Table Name" class="my-2">Table Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Table Name"
-                                    name="name" value="{{ $tables->name }}">
+                                <label for="categories Name" class="my-2">categories Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter categories Name"
+                                    name="name" value="{{ old('name') }}">
                             </div>
                             <div class="form-group">
-                                <label for="Number of Chair" class="my-2">Number of Chair</label>
-                                <input type="text" class="form-control" id="number_of_chairs"
-                                    placeholder="Enter Number of Chair" name="number_of_chairs"
-                                    value="{{ $tables->number_of_chairs }}">
+                                <label for="Icon" class="my-2">Icon</label>
+                                <input type="file" class="form-control" id="categoryImage" name="image" >
                             </div>
                             <div class="form-group">
                                 <label for="Status" class="my-2">Status</label>
-                                <select class="form-select" name="status" value="{{$tables->status}}">
-                                    <option hidden>Status</option>
-                                    
-                                    @if ($tables->status==1)                                        
-                                    <option selected value="1">Available</option>
+                                <select class="form-select" name="status">
+                                    <option selected hidden>Status</option>
+                                    <option value="1">Available</option>
                                     <option value="0">Un Available</option>
-                                    @else
-                                        @if ($tables->status==0)                                        
-                                            <option value="1">Available</option>
-                                            <option selected value="0">Un Available</option>
-  
-                                        @endif
-                            @endif
-                                    
                                 </select>
                             </div>
                             <button class="btn btn-outline-success mt-4 animation-on-hover d-block w-100 text-center"

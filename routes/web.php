@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TablesCotroller;
+use App\Http\Controllers\CategoriesCotroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,5 @@ Route::get('/', function () {
     return view('index');
 });
     Route::resource('/table', TablesCotroller::class);
+    Route::resource('/categories', CategoriesCotroller::class);
 
