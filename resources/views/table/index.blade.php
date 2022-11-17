@@ -11,28 +11,6 @@
 
             <div class="row">
 
-{{--                @if (session('success'))--}}
-{{--                    <script>--}}
-{{--                        	$(document).ready(function() {--}}
-{{--                                toastr.options = {--}}
-{{--                                    "closeButton": true,--}}
-{{--                                    "debug": false,--}}
-{{--                                    "newestOnTop": false,--}}
-{{--                                    "progressBar": false,--}}
-{{--                                    "positionClass": "toast-top-right",--}}
-{{--                                    "showDuration": "300",--}}
-{{--                                    "hideDuration": "1000",--}}
-{{--                                    "timeOut": "3000",--}}
-{{--                                    "extendedTimeOut": "1000",--}}
-{{--                                    "showEasing": "swing",--}}
-{{--                                    "hideEasing": "linear",--}}
-{{--                                    "showMethod": "fadeIn",--}}
-{{--                                    "hideMethod": "fadeOut"--}}
-{{--                                }--}}
-{{--                                toastr.success("{{ session('success') }}")--}}
-{{--                            })--}}
-{{--                    </script>--}}
-{{--                @endif--}}
                 <a href="{{ url('/table/create') }}" class="btn btn-outline-primary create">Create Table</a>
                 <table id="datatableDefault" class="table text-nowrap w-100">
                     <thead>
@@ -78,7 +56,7 @@
                                         <div class="modal-footer">
                                             <button style="width:40%;" type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <form action="{{ route('table.destroy', 'test') }}" method="post"
+                                            <form action="{{ route('table.destroy', $tables->id ) }}" method="post"
                                                 style="display: inline">
                                                 {{ method_field('delete') }}
                                                 {{ csrf_field() }}

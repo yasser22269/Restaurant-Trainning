@@ -1,4 +1,7 @@
 @extends('layout.master')
+
+@section('title','Table ADD')
+
 <!-- BEGIN #app -->
 @section('content')
     <div id="app" class="app">
@@ -24,7 +27,7 @@
                         Create Table
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('table.store', 'test') }}" method="post">
+                        <form action="{{ route('table.store') }}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="Table Name" class="my-2">Table Name</label>

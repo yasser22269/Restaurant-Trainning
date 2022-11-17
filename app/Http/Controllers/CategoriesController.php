@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class CategoriesController extends Controller
@@ -14,7 +16,6 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-
         $categories = Category::all();
         return view('categories.index', compact('categories'));
     }
@@ -35,25 +36,21 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
+         try {
+             DB::beginTransaction();
+             $Category =  Category::create($request->except('_token', 'icon'));
+             $fileName = uploadImage('categories', $request->icon);
+             $Category->icon = $fileName;
+             $Category->save();
 
-
-        $this->validate($request, [
-            'name' => 'required|string',
-            'status' => 'required|numeric',
-            'image' => 'required',
-        ]);
-        $image = $request->image;
-        $image_name = time() . '.' . $image->extension();
-        $request->image->move(public_path('images'), $image_name);
-
-        Category::create([
-            'name' => $request->name,
-            'status' => $request->status,
-            'icon' => 'images/' . $image_name,
-        ]);
-        return redirect('/categories')->with('success', 'categories Added Successfully');
+             DB::commit();
+             return redirect()->route('categories.index')->with(['success' => 'تم ألاضافة بنجاح']);
+         } catch (\Exception $ex) {
+             DB::rollback();
+             return redirect()->route('categories.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+         }
 
     }
 
@@ -88,28 +85,31 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $categories = Category::find($id);
-                if($request->image != ''){
-            if ($categories->image != ''  && $categories->image != null) {
-                $file_old = $categories->image;
-                unlink($file_old);
-            }
+        try {
+            DB::beginTransaction();
+            $Category = Category::find($id);
+            $Category->update($request->except('_token','icon','_method'));
 
-            $image = $request->image;
-            $image_new = time() . '.' . $image->extension();
-            $request->image->move(public_path('images'), $image_new);
-            $categories->update(['icon' => 'images/' . $image_new]);
+            //  Start Change Photo
+            if($request->icon){
+                $photo  = replaceurl($Category->icon);
+                if (File::exists($photo)) {
+                    File::delete($photo);
                 }
+                $fileName = uploadImage('categories', $request->icon);
+                $Category->icon = $fileName;
+                $Category->save();
+            }
+            //End Change Photo
 
-        $categories->update([
-            'name' => $request->name,
-            'status' => $request->status,
-        ]);
-
-        return redirect('/categories')->with('success', 'categories Edit Successfully');
-
+            DB::commit();
+            return redirect()->route('categories.index')->with(['success' => 'تم التعديل بنجاح']);
+        } catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->route('categories.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
 
     }
 
@@ -119,10 +119,26 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        Category::find($request->id)->delete();
-        return redirect('/categories')->with('success', 'categories Deleted Successfully');
+        try {
+            $Category = Category::find($id);
+            if (!$Category)
+                return redirect()->route('categories.index')->with(['error' => 'هذا العنصر غير موجود ']);
 
+            if($Category->icon){
+                $photo  = replaceurl($Category->icon);
+                if (File::exists($photo)) {
+                    File::delete($photo);
+                }
+            }
+
+            $Category->delete();
+            return redirect()->route('categories.index')->with(['success' => 'تم الحذف بنجاح']);
+        }catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->route('categories.index')
+                ->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
     }
 }

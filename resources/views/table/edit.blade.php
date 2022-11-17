@@ -1,4 +1,6 @@
 @extends('layout.master')
+@section('title','Table Edit')
+
 <!-- BEGIN #app -->
 @section('content')
     <div id="app" class="app">
@@ -41,8 +43,6 @@
                             <div class="form-group">
                                 <label for="Status" class="my-2">Status</label>
                                 <select class="form-select" name="status" value="{{$tables->status}}">
-                                    <option hidden>Status</option>
-
                                     @if ($tables->status==1)
                                     <option selected value="1">Available</option>
                                     <option value="0">Un Available</option>

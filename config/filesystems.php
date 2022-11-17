@@ -46,6 +46,11 @@ return [
             'root' => public_path('images/products'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+        ],'categories' => [
+            'driver' => 'local',
+            'root' => public_path('images/categories'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
         ],
 
 

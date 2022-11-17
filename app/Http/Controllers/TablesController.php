@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\TableRequest;
 use App\Models\Table;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TablesController extends Controller
 {
@@ -34,21 +36,16 @@ class TablesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TableRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string',
-            'status' => 'required|numeric',
-            'number_of_chairs' => 'required|numeric',
-        ]);
-
-        Table::create([
-            'name' => $request->name,
-            'status' => $request->status,
-            'number_of_chairs' => $request->number_of_chairs,
-        ]);
-        return redirect('/table')->with('success', 'Table Added Successfully');
-
+        try {
+            Table::create($request->all());
+            return redirect()->route('table.index')->with(['success' => 'تم ألاضافة بنجاح']);
+        }catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->route('table.index')
+                ->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
     }
 
     /**
@@ -82,18 +79,21 @@ class TablesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TableRequest $request, $id)
     {
-                $table = Table::find($id);
-
+        try {
+        $table = Table::find($id);
         $table->update([
             'name' => $request->name,
             'status' => $request->status,
             'number_of_chairs' => $request->number_of_chairs,
         ]);
-
-        return redirect('/table')->with('success', 'table Edit Successfully');
-
+            return redirect()->route('table.index')->with(['success' => 'تم التعديل بنجاح']);
+        }catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->route('table.index')
+                ->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
 
     }
 
@@ -103,10 +103,19 @@ class TablesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        Table::find($request->id)->delete();
-        return redirect('/table')->with('success', 'Table Deleted Successfully');
+        try {
+            $Table = Table::find($id);
+            if (!$Table)
+                return redirect()->route('table.index')->with(['error' => 'هذا العنصر غير موجود ']);
+            $Table->delete();
+            return redirect()->route('table.index')->with(['success' => 'تم الحذف بنجاح']);
+        }catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->route('table.index')
+                ->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
 
     }
 }

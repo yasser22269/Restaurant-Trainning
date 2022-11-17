@@ -57,7 +57,7 @@
                                         <div class="modal-footer">
                                             <button style="width:40%;" type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <form action="{{ route('categories.destroy', 'test') }}" method="post"
+                                            <form action="{{ route('categories.destroy', $categories->id ) }}" method="post"
                                                 style="display: inline">
                                                 {{ method_field('delete') }}
                                                 {{ csrf_field() }}

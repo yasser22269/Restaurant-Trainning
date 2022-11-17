@@ -1,5 +1,7 @@
 @extends('layout.master')
 <!-- BEGIN #app -->
+@section('title','categories Edit')
+
 @section('content')
     <div id="app" class="app">
         <!-- BEGIN #content -->
@@ -35,13 +37,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="Icon" class="my-2">Icon</label>
-                                <input type="file" class="form-control" id="categoryImage" name="image">
+                                <input type="file" class="form-control" id="categoryImage" name="icon">
                             </div>
                             <div class="form-group">
                                 <label for="Status" class="my-2">Status</label>
                                 <select class="form-select" name="status" value="{{ $categories->status }}">
-                                    <option hidden>Status</option>
-
                                     @if ($categories->status == 1)
                                         <option selected value="1">Available</option>
                                         <option value="0">Un Available</option>

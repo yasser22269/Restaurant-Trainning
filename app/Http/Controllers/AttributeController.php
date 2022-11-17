@@ -83,15 +83,15 @@ class AttributeController extends Controller
      */
     public function update(AttributeRequest $request, $id)
     {
-        try {
-            $attributes = Attribute::find($id);
-            $attributes->update($request->except('_token','_method'));
-        return redirect()->route('Attribute.index')->with(['success' => 'تم التعديل بنجاح']);
-    }catch (\Exception $ex) {
-        DB::rollback();
-        return redirect()->route('Attribute.index')
-        ->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-    }
+            try {
+                $attributes = Attribute::find($id);
+                $attributes->update($request->except('_token','_method'));
+            return redirect()->route('Attribute.index')->with(['success' => 'تم التعديل بنجاح']);
+        }catch (\Exception $ex) {
+            DB::rollback();
+            return redirect()->route('Attribute.index')
+            ->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
 
     }
 
@@ -104,7 +104,10 @@ class AttributeController extends Controller
     public function destroy($id)
     {
         try {
-            Attribute::find($id)->delete();
+            $Attribute = Attribute::find($id);
+            if (!$Attribute)
+                return redirect()->route('Attribute.index')->with(['error' => 'هذا العنصر غير موجود ']);
+            $Attribute->delete();
             return redirect()->route('Attribute.index')->with(['success' => 'تم الحذف بنجاح']);
         }catch (\Exception $ex) {
             DB::rollback();

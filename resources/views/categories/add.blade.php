@@ -1,5 +1,7 @@
 @extends('layout.master')
 <!-- BEGIN #app -->
+@section('title','categories Add')
+
 @section('content')
     <div id="app" class="app">
         <!-- BEGIN #content -->
@@ -24,7 +26,7 @@
                         Create Categories
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('categories.store', 'test') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label for="categories Name" class="my-2">categories Name</label>
@@ -33,12 +35,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="Icon" class="my-2">Icon</label>
-                                <input type="file" class="form-control" id="categoryImage" name="image" >
+                                <input type="file" class="form-control" id="categoryImage" name="icon" >
                             </div>
                             <div class="form-group">
                                 <label for="Status" class="my-2">Status</label>
                                 <select class="form-select" name="status">
-                                    <option selected hidden>Status</option>
                                     <option value="1">Available</option>
                                     <option value="0">Un Available</option>
                                 </select>

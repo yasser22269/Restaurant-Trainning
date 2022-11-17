@@ -18,4 +18,8 @@ class Category extends Model
     public function scopeCategoriesAvailable($query){
         return $query->where('status',1) ; //محجوز
     }
+    public function getIconAttribute($val)
+    {
+        return $val ? asset('images/categories/'.$val) : '';
+    }
 }
