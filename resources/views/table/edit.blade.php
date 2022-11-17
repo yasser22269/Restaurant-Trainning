@@ -42,18 +42,18 @@
                                 <label for="Status" class="my-2">Status</label>
                                 <select class="form-select" name="status" value="{{$tables->status}}">
                                     <option hidden>Status</option>
-                                    
-                                    @if ($tables->status==1)                                        
+
+                                    @if ($tables->status==1)
                                     <option selected value="1">Available</option>
                                     <option value="0">Un Available</option>
                                     @else
-                                        @if ($tables->status==0)                                        
+                                        @if ($tables->status==0)
                                             <option value="1">Available</option>
                                             <option selected value="0">Un Available</option>
-  
+
                                         @endif
                             @endif
-                                    
+
                                 </select>
                             </div>
                             <button class="btn btn-outline-success mt-4 animation-on-hover d-block w-100 text-center"

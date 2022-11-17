@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Table;
 use Illuminate\Http\Request;
 
-class TablesCotroller extends Controller
+class TablesController extends Controller
 {
     /**
      * Display a listing of the resource.

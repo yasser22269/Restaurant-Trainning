@@ -8,8 +8,9 @@
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>@yield('title')</title>
     @include('layout.head')
-
+    @yield('css')
 </head>
 <body>
 <!-- BEGIN #app -->
@@ -25,7 +26,6 @@
     <!-- main-content -->
     <div class="content-wrapper">
 
-
         @yield('content')
 
         <!--=================================
@@ -39,6 +39,7 @@ footer -->
 </div>
 <!--footer -->
 @include('layout.script')
+@yield('js')
 </body>
 </html>
 

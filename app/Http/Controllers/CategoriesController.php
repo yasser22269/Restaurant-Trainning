@@ -5,7 +5,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class CategoriesCotroller extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Option extends Model 
+class Option extends Model
 {
 
     protected $table = 'options';
     public $timestamps = true;
-    protected $fillable = array('name', 'product_id', 'price', 'status');
+    protected $fillable = array('name', 'product_id', 'price', 'status','attribute_id');
 
     public function product()
     {
