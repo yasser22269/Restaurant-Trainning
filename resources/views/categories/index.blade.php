@@ -1,35 +1,17 @@
 @extends('layout.master')
+@section('title','categories Index')
 <!-- BEGIN #app -->
 @section('content')
     <div id="app" class="app">
         <!-- BEGIN #content -->
         <div id="content container" class="app-content">
             <!-- BEGIN row -->
+            @include('layout.alerts.alerts')
+
             <div class="row">
-                @if (session('success'))
-                    <script>
-                        	$(document).ready(function() {
-                                toastr.options = {
-                                    "closeButton": true,
-                                    "debug": false,
-                                    "newestOnTop": false,
-                                    "progressBar": false,
-                                    "positionClass": "toast-top-right",
-                                    "showDuration": "300",
-                                    "hideDuration": "1000",
-                                    "timeOut": "3000",
-                                    "extendedTimeOut": "1000",
-                                    "showEasing": "swing",
-                                    "hideEasing": "linear",
-                                    "showMethod": "fadeIn",
-                                    "hideMethod": "fadeOut"
-                                }
-                                toastr.success("{{ session('success') }}")
-                            })
-                    </script>
-                @endif
-                <a href="{{ url('/categories/create') }}" class="btn btn-outline-primary">Create Category</a>
-                <table class="table table-hover table-responsive">
+
+                <a href="{{ url('/categories/create') }}" class="btn btn-outline-primary create">Create Category</a>
+                <table id="datatableDefault" class="table text-nowrap w-100">
                     <thead>
                         <tr>
                             <td> # </td>
@@ -66,7 +48,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="deleterecordLabel">Delete {{ $categories->name }}</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">
                                                 <i class="tim-icons icon-simple-remove"></i></button>
                                         </div>
                                         <div class="modal-body">
@@ -74,7 +56,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button style="width:40%;" type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
+                                                data-bs-dismiss="modal">Close</button>
                                             <form action="{{ route('categories.destroy', 'test') }}" method="post"
                                                 style="display: inline">
                                                 {{ method_field('delete') }}

@@ -5,7 +5,7 @@
         <div class="menu">
             <div class="menu-header">Navigation</div>
             <div class="menu-item active">
-                <a href="index.html" class="menu-link">
+                <a href="{{ url('/') }}" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-cpu"></i></span>
                     <span class="menu-text">Dashboard</span>
                 </a>
@@ -25,25 +25,20 @@
             <div class="menu-item has-sub">
                 <a href="#" class="menu-link">
                     <span class="menu-icon">
-                        <i class="bi bi-envelope"></i>
+                        <i class="bi bi-collection"></i>
                     </span>
-                    <span class="menu-text">Email</span>
+                    <span class="menu-text">Product</span>
                     <span class="menu-caret"><b class="caret"></b></span>
                 </a>
                 <div class="menu-submenu">
                     <div class="menu-item">
-                        <a href="email_inbox.html" class="menu-link">
-                            <span class="menu-text">Inbox</span>
+                        <a href="{{ url('Product') }}" class="menu-link">
+                            <span class="menu-text">Product</span>
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a href="email_compose.html" class="menu-link">
-                            <span class="menu-text">Compose</span>
-                        </a>
-                    </div>
-                    <div class="menu-item">
-                        <a href="email_detail.html" class="menu-link">
-                            <span class="menu-text">Detail</span>
+                        <a href="{{ url('Attribute') }}" class="menu-link">
+                            <span class="menu-text">Attributes</span>
                         </a>
                     </div>
                 </div>

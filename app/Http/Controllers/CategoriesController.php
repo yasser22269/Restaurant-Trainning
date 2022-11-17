@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Table;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
-class TablesCotroller extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class TablesCotroller extends Controller
     public function index()
     {
 
-        $tables = Table::all();
-        return view('table.index', compact('tables'));
+        $categories = Category::all();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -25,7 +26,7 @@ class TablesCotroller extends Controller
      */
     public function create()
     {
-        return view('table.add');
+        return view('categories.add');
     }
 
     /**
@@ -36,18 +37,23 @@ class TablesCotroller extends Controller
      */
     public function store(Request $request)
     {
+
+
         $this->validate($request, [
             'name' => 'required|string',
             'status' => 'required|numeric',
-            'number_of_chairs' => 'required|numeric',
+            'image' => 'required',
         ]);
+        $image = $request->image;
+        $image_name = time() . '.' . $image->extension();
+        $request->image->move(public_path('images'), $image_name);
 
-        Table::create([
+        Category::create([
             'name' => $request->name,
             'status' => $request->status,
-            'number_of_chairs' => $request->number_of_chairs,
+            'icon' => 'images/' . $image_name,
         ]);
-        return redirect('/table')->with('success', 'Table Added Successfully');
+        return redirect('/categories')->with('success', 'categories Added Successfully');
 
     }
 
@@ -70,8 +76,8 @@ class TablesCotroller extends Controller
      */
     public function edit($id)
     {
-        $tables = Table::find($id);
-        return view('table.edit', compact('tables'));
+        $categories = Category::find($id);
+        return view('categories.edit', compact('categories'));
 
     }
 
@@ -84,15 +90,25 @@ class TablesCotroller extends Controller
      */
     public function update(Request $request, $id)
     {
-                $table = Table::find($id);
+        $categories = Category::find($id);
+                if($request->image != ''){
+            if ($categories->image != ''  && $categories->image != null) {
+                $file_old = $categories->image;
+                unlink($file_old);
+            }
 
-        $table->update([
+            $image = $request->image;
+            $image_new = time() . '.' . $image->extension();
+            $request->image->move(public_path('images'), $image_new);
+            $categories->update(['icon' => 'images/' . $image_new]);
+                }
+
+        $categories->update([
             'name' => $request->name,
             'status' => $request->status,
-            'number_of_chairs' => $request->number_of_chairs,
         ]);
 
-        return redirect('/table')->with('success', 'table Edit Successfully');
+        return redirect('/categories')->with('success', 'categories Edit Successfully');
 
 
     }
@@ -105,8 +121,8 @@ class TablesCotroller extends Controller
      */
     public function destroy(Request $request)
     {
-        Table::find($request->id)->delete();
-        return redirect('/table')->with('success', 'Table Deleted Successfully');
+        Category::find($request->id)->delete();
+        return redirect('/categories')->with('success', 'categories Deleted Successfully');
 
     }
 }

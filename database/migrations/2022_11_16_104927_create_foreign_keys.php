@@ -13,15 +13,20 @@ class CreateForeignKeys extends Migration {
 						->onDelete('set null')
 						->onUpdate('restrict');
 		});
-		Schema::table('options', function(Blueprint $table) {
-			$table->foreign('product_id')->references('id')->on('products')
+        Schema::table('options', function(Blueprint $table) {
+            $table->foreign('product_id')->references('id')->on('products')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+        });
+        Schema::table('options', function(Blueprint $table) {
+            $table->foreign('attribute_id')->references('id')->on('attributes')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+        });
+		Schema::table('products', function(Blueprint $table) {
+			$table->foreign('category_id')->references('id')->on('categories')
 						->onDelete('restrict')
 						->onUpdate('restrict');
-		});
-		Schema::table('options', function(Blueprint $table) {
-			$table->foreign('attribute_id')->references('id')->on('attributes')
-						->onDelete('no action')
-						->onUpdate('no action');
 		});
 		Schema::table('order', function(Blueprint $table) {
 			$table->foreign('emp_id')->references('id')->on('employees')
@@ -95,6 +100,9 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('options', function(Blueprint $table) {
 			$table->dropForeign('options_attribute_id_foreign');
+		});
+		Schema::table('products', function(Blueprint $table) {
+			$table->dropForeign('products_category_id_foreign');
 		});
 		Schema::table('order', function(Blueprint $table) {
 			$table->dropForeign('order_emp_id_foreign');

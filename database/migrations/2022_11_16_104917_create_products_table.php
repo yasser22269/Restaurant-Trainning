@@ -12,10 +12,11 @@ class CreateProductsTable extends Migration {
 			$table->timestamps();
 			$table->string('name', 50);
 			$table->text('description');
-			$table->string('picture');
+			$table->string('picture')->nullable();
 			$table->string('price');
 			$table->boolean('status');
 			$table->string('discount')->nullable();
+			$table->integer('category_id')->unsigned();
 		});
 	}
 

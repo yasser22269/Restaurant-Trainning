@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Attribute extends Model 
+class Attribute extends Model
 {
 
     protected $table = 'attributes';
@@ -14,6 +14,9 @@ class Attribute extends Model
     public function option()
     {
         return $this->hasMany('App\Models\Option');
+    }
+    public function scopeAttributesAvailable($query){
+        return $query->where('status',1) ; //محجوز
     }
 
 }

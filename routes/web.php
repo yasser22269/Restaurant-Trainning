@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TablesCotroller;
-use App\Http\Controllers\CategoriesCotroller;
+use App\Http\Controllers\TablesController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,8 @@ use App\Http\Controllers\CategoriesCotroller;
 Route::get('/', function () {
     return view('index');
 });
-    Route::resource('/table', TablesCotroller::class);
-    Route::resource('/categories', CategoriesCotroller::class);
+    Route::resource('/table', TablesController::class);
+    Route::resource('/categories', CategoriesController::class);
+    Route::resource('Attribute', AttributeController::class);
+    Route::resource('Product', ProductController::class);
 
