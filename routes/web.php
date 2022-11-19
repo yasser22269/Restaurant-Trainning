@@ -13,6 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Auth::routes();
+Route::group(['middleware'=>['guest']], function(){
+    Route::get('/', function()
+    {
+        return view('auth.login');
+    });
 });
+Route::group(
+    [
+        'middleware' => ['auth' ]
+    ], function(){
+    /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
+    Route::get('/', function()
+    {
+        return view('index');
+    });
+    Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
+});
+
+
