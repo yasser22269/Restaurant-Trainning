@@ -2,18 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model 
+class Role extends Model
 {
+    use SoftDeletes;
+    use HasFactory;
 
     protected $table = 'roles';
     public $timestamps = false;
     protected $fillable = array('name', 'permissions');
 
-    public function role()
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
+
+    public function permissions()
     {
-        return $this->hasMany('App\Models\Employee', 'role_id');
+        return $this->belongsToMany(Permission::class);
     }
 
 }

@@ -8,14 +8,18 @@ class CreateEmployeesTable extends Migration {
 	public function up()
 	{
 		Schema::create('employees', function(Blueprint $table) {
-			$table->increments('id');
-			$table->string('name', 50);
-			$table->integer('role_id')->unsigned()->nullable();
-			$table->string('nid')->unique();
-			$table->string('phone')->unique();
-			$table->string('photo')->nullable();
-			$table->boolean('status');
-			$table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('name')->nullable();
+            $table->string('nid')->unique()->nullable();
+            $table->string('phone')->unique();
+            $table->string('photo')->nullable();
+            $table->string('email')->nullable()->unique();
+            $table->datetime('email_verified_at')->nullable();
+            $table->boolean('status');
+            $table->string('password')->nullable();
+            $table->string('remember_token')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
 		});
 	}
 

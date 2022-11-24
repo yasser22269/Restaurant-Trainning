@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model 
+class Employee extends Model
 {
+    use HasFactory;
+
+    protected $guarded = [];
 
     protected $table = 'employees';
     public $timestamps = true;
-    protected $fillable = array('name', 'role_id', 'nid', 'phone', 'photo', 'status');
+    protected $fillable = array('name', 'nid', 'phone', 'photo', 'status');
 
     public function emp_type()
     {
