@@ -21,7 +21,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">{{ __('Email Address') }} <span class="text-danger">*</span></label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror form-control-lg bg-white bg-opacity-5" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="username@address.com" />
+                    <input id="number" type="number" class="form-control @error('email') is-invalid @enderror form-control-lg bg-white bg-opacity-5" name="phone"  autocomplete="email" placeholder="username@address.com" />
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

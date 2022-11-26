@@ -41,6 +41,24 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'upload_attachments' => [
+            'driver'     => 'local',
+            'root'       => public_path('/'),
+            'url'        => env('APP_URL').'/storage',
+            'visibility' => 'public'
+        ],
+        'products' => [
+            'driver' => 'local',
+            'root' => public_path('images/products'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],'categories' => [
+            'driver' => 'local',
+            'root' => public_path('images/categories'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
 
         's3' => [
             'driver' => 's3',

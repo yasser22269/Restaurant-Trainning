@@ -1,5 +1,4 @@
 @extends('layout.master')
-	<!-- BEGIN #app -->
 @section('content')
 	<div id="app" class="app">
 		<!-- BEGIN #content -->

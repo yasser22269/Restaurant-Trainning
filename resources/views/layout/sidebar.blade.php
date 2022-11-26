@@ -5,39 +5,46 @@
         <div class="menu">
             <div class="menu-header">Navigation</div>
             <div class="menu-item active">
-                <a href="index.html" class="menu-link">
+                <a href="{{ url('/') }}" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-cpu"></i></span>
                     <span class="menu-text">Dashboard</span>
                 </a>
             </div>
             <div class="menu-item">
-                <a href="analytics.html" class="menu-link">
-                    <span class="menu-icon"><i class="bi bi-bar-chart"></i></span>
-                    <span class="menu-text">Analytics</span>
+                <a href="{{ url('/table') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-table"></i></span>
+                    <span class="menu-text">Tables</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{{ route('employee.index') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-user"></i></span>
+                    <span class="menu-text">Employee</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{{ url('/categories') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-book"></i></span>
+                    <span class="menu-text">Categories</span>
                 </a>
             </div>
             <div class="menu-item has-sub">
                 <a href="#" class="menu-link">
-							<span class="menu-icon">
-								<i class="bi bi-envelope"></i>
-							</span>
-                    <span class="menu-text">Email</span>
+                    <span class="menu-icon">
+                        <i class="bi bi-collection"></i>
+                    </span>
+                    <span class="menu-text">Product</span>
                     <span class="menu-caret"><b class="caret"></b></span>
                 </a>
                 <div class="menu-submenu">
                     <div class="menu-item">
-                        <a href="email_inbox.html" class="menu-link">
-                            <span class="menu-text">Inbox</span>
+                        <a href="{{ url('Product') }}" class="menu-link">
+                            <span class="menu-text">Product</span>
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a href="email_compose.html" class="menu-link">
-                            <span class="menu-text">Compose</span>
-                        </a>
-                    </div>
-                    <div class="menu-item">
-                        <a href="email_detail.html" class="menu-link">
-                            <span class="menu-text">Detail</span>
+                        <a href="{{ url('Attribute') }}" class="menu-link">
+                            <span class="menu-text">Attributes</span>
                         </a>
                     </div>
                 </div>
@@ -304,7 +311,7 @@
             <div class="menu-divider"></div>
             <div class="menu-header">Users</div>
             <div class="menu-item">
-                <a href="profile.html" class="menu-link">
+                <a href="{{route('employee.show', Auth::user()->id)}}" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-people"></i></span>
                     <span class="menu-text">Profile</span>
                 </a>

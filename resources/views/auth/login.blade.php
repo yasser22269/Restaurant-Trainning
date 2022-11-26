@@ -12,8 +12,8 @@
                         For your protection, please verify your identity.
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">{{ __('Email Address') }} <span class="text-danger">*</span></label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror form-control-lg bg-white bg-opacity-5" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus/>
+                        <label class="form-label">Phone number <span class="text-danger">*</span></label>
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror form-control-lg bg-white bg-opacity-5" name="email" required autocomplete="email" autofocus/>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
