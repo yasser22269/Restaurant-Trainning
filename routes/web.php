@@ -5,6 +5,7 @@ use App\Http\Controllers\TablesController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,8 @@ Route::get('/', function () {
     Route::resource('/categories', CategoriesController::class);
     Route::resource('Attribute', AttributeController::class);
     Route::resource('Product', ProductController::class);
+        Route::prefix('settings')->name('settings.')->group(function () {
+            Route::get('/',[SettingController::class,'index'])->name('index');
+            Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
+        });
 
