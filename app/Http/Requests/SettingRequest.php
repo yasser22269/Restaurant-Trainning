@@ -24,13 +24,15 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
-            "phoneNumber" => 'required|regex:/(01)[0-9]{9}/',
-            "phoneNumber2" => 'required|min:11|regex:/(01)[0-9]{9}/',
-            "whatsapp" => 'required|min:11|regex:/(01)[0-9]{9}/',
-            "facebook" => 'required|string',
-            "websiteName" => 'required|string',
-            "address" => 'required|string',
-            "email" => 'required|string|email',
+            "phoneNumber" => 'regex:/(01)[0-9]{9}/|nullable',
+            "phoneNumber2" => 'min:11|regex:/(01)[0-9]{9}/|nullable',
+            "facebook" => 'string|nullable',
+            "websiteName" => 'string|nullable',
+            "address" => 'string|nullable',
+            "email" => 'string|email|nullable',
+            "about" => 'string|nullable',
+            "logo" => 'mimes:jpg,jpeg,png,svg|nullable',
+            "smallLogo" => 'mimes:jpg,jpeg,png,svg|nullable',
         ];
     }
 }

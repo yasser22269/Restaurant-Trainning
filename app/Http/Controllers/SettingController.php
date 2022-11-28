@@ -72,22 +72,31 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SettingRequest $request, Setting $settings)
+    public function update(SettingRequest $request, $id)
     {
- 
+       // return $request;
         try {
             DB::beginTransaction();
-            Setting::query()->update($request->except('_token','logo','smallLogo','logoWidth','_method'));
-            if($request->logo){
-                $logo  = replaceurl(Setting::query()->logo);
+            $setting = Setting::find($id);
+            Setting::where('id',$id)->update($request->except('_token','logo','smallLogo','_method'));
+           if($request->hasFile('logo')){
+                $logo  = replaceurl($setting->logo);
                 if (File::exists($logo)) {
                     File::delete($logo);
                 }
-                $fileName = uploadImage('categories', $request->logo);
-                 Setting::query()->logo = $fileName;
-                 Setting::query()->save();
+                $fileName = uploadImage('setting', $request->logo);
+                $setting->logo = $fileName;
+                $setting->save();
             }
-
+            if($request->hasFile('small_logo')){
+                $logo  = replaceurl($setting->small_logo);
+                if (File::exists($logo)) {
+                    File::delete($logo);
+                }
+                $fileName = uploadImage('setting', $request->small_logo);
+                $setting->small_logo = $fileName;
+                $setting->save();
+            }
             DB::commit();
             return redirect()->back()->with(['success' => 'تم التعديل بنجاح']);
         } catch (\Exception $ex) {

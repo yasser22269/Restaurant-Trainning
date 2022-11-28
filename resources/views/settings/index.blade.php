@@ -28,7 +28,7 @@
                         Setting
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('settings.update', $settings) }}" method="post"  enctype="multipart/form-data">
+                        <form action="{{ route('settings.update', $settings->id) }}" method="post"  enctype="multipart/form-data">
                             @csrf
                             @method("PUT")
                             <div class="form-group">
@@ -42,11 +42,6 @@
                                     name="phoneNumber2" value="{{ $settings->phoneNumber2 }}">
                             </div>
                             <div class="form-group">
-                                <label for="whatsapp" class="my-2">whatsapp</label>
-                                <input type="text" class="form-control" id="whatsapp" placeholder="Enter whatsapp"
-                                    name="whatsapp" value="{{ $settings->whatsapp }}">
-                            </div>
-                            <div class="form-group">
                                 <label for="facebook" class="my-2">facebook</label>
                                 <input type="text" class="form-control" id="facebook" placeholder="Enter facebook"
                                     name="facebook" value="{{ $settings->facebook }}">
@@ -58,8 +53,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="Address" class="my-2">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="Enter Address"
-                                    name="address" value="{{ $settings->address }}">
+                                <textarea class="form-control" id="address" placeholder="Enter Address"
+                                          name="address">{{ $settings->address }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="About" class="my-2">About</label>
+                                <textarea class="form-control" id="about" placeholder="Enter About"
+                                          name="about">{{ $settings->about }}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -71,6 +71,18 @@
                                 <label for="file" class="my-2">Logo</label>
                                 <input type="file" class="form-control" id="logo"
                                     name="logo">
+                                @if($settings->logo != null)
+                                    <img class="mt-2"  src="{{$settings->logo}}" alt="" width="150" height="150">
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="file" class="my-2">Small Logo</label>
+                                <input type="file" class="form-control" id="small_logo"
+                                       name="small_logo">
+                                @if($settings->small_logo!= null)
+                                    <img class="mt-2" src="{{$settings->small_logo}}" alt="" width="150" height="150">
+                                @endif
                             </div>
                             <button class="btn btn-outline-success mt-4 animation-on-hover d-block w-100 text-center" type="submit">Submit</button>
 

@@ -10,7 +10,7 @@ function uploadImage($folder,$image){
 }
 
 function replaceurl($url){
-    return   str_replace('http://127.0.0.1:8000/', '',  $url);
+    return   str_replace('http://127.0.0.1:8001/', '',  $url);
 
 }
 
