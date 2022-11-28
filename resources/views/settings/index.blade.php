@@ -67,23 +67,51 @@
                                 <input type="text" class="form-control" id="email" placeholder="Enter your Email"
                                     name="email" value="{{ $settings->email }}">
                             </div>
-                            <div class="form-group">
-                                <label for="file" class="my-2">Logo</label>
-                                <input type="file" class="form-control" id="logo"
-                                    name="logo">
-                                @if($settings->logo != null)
-                                    <img class="mt-2"  src="{{$settings->logo}}" alt="" width="150" height="150">
-                                @endif
+                            <div class="form-group mt-4">
+                                <div class="row" style="align-items:center">
+                                    <div class="col-md-6">
+                                        <label for="file" class="my-2">Logo</label>
+                                        <input type="file" class="form-control" id="logo" name="logo">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                @if($settings->logo != null)
+                                                    <p class="lead">Current Logo</p>
+                                                    <img class="mt-2" id="logoImage" src="{{$settings->logo}}" alt="" width="150" height="150">
+                                                @endif
+                                            </div>
+                                            <div class="col-6 d-none" id="logodiv">
+                                                <p class="lead">Choose Logo</p>
+                                                <img class="mt-2" id="chooseLogoImage" src="{{$settings->logo}}" alt="" width="150" height="150">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4">
+                                <div class="row" style="align-items:center">
+                                    <div class="col-md-6">
+                                        <label for="file" class="my-2">small Logo</label>
+                                        <input type="file" class="form-control" id="smallLogo" name="smallLogo">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                @if($settings->smallLogo != null)
+                                                    <p class="lead">Current small Logo</p>
+                                                    <img class="mt-2" id="smallLogoImage" src="{{$settings->smallLogo}}" alt="" width="150" height="150">
+                                                @endif
+                                            </div>
+                                            <div class="col-6 d-none" id="smallLogodiv">
+                                                <p class="lead">Choose small Logo</p>
+                                                <img class="mt-2" id="choosesmallLogoImage" src="{{$settings->smallLogo}}" alt="" width="150" height="150">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="file" class="my-2">Small Logo</label>
-                                <input type="file" class="form-control" id="small_logo"
-                                       name="small_logo">
-                                @if($settings->small_logo!= null)
-                                    <img class="mt-2" src="{{$settings->small_logo}}" alt="" width="150" height="150">
-                                @endif
-                            </div>
                             <button class="btn btn-outline-success mt-4 animation-on-hover d-block w-100 text-center" type="submit">Submit</button>
 
                         </form>
@@ -104,6 +132,23 @@
         <!-- BEGIN btn-scroll-top -->
         <a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
         <!-- END btn-scroll-top -->
+        <script>
+            logo.onchange = evt => {
+            const [file] = logo.files
+            if (file) {
+                chooseLogoImage.src = URL.createObjectURL(file)
+                $("#logodiv").removeClass('d-none')
+
+            }
+            }
+            smallLogo.onchange = evt => {
+            const [file] = smallLogo.files
+            if (file) {
+                choosesmallLogoImage.src = URL.createObjectURL(file)
+                $("#smallLogodiv").removeClass('d-none')
+            }
+            }
+        </script>
     </div>
     <!-- END #app -->
 @endsection

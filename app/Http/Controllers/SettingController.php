@@ -88,13 +88,13 @@ class SettingController extends Controller
                 $setting->logo = $fileName;
                 $setting->save();
             }
-            if($request->hasFile('small_logo')){
-                $logo  = replaceurl($setting->small_logo);
+            if($request->hasFile('smallLogo')){
+                $logo  = replaceurl($setting->smallLogo);
                 if (File::exists($logo)) {
                     File::delete($logo);
                 }
-                $fileName = uploadImage('setting', $request->small_logo);
-                $setting->small_logo = $fileName;
+                $fileName = uploadImage('setting', $request->smallLogo);
+                $setting->smallLogo = $fileName;
                 $setting->save();
             }
             DB::commit();

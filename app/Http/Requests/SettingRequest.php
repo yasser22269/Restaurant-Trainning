@@ -24,8 +24,8 @@ class SettingRequest extends FormRequest
     public function rules()
     {
         return [
-            "phoneNumber" => 'regex:/(01)[0-9]{9}/|nullable',
-            "phoneNumber2" => 'min:11|regex:/(01)[0-9]{9}/|nullable',
+            "phoneNumber" => 'nullable|regex:/(01)[0-9]{9}/',
+            "phoneNumber2" => 'min:11|nullable|regex:/(01)[0-9]{9}/',
             "facebook" => 'string|nullable',
             "websiteName" => 'string|nullable',
             "address" => 'string|nullable',
