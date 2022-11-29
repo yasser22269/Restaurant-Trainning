@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repository\EmployeeRepositoryInterface;
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
         //
         return $this->employee->store($request);
@@ -75,10 +76,14 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         //
-        return $this->employee->update($request);
+        return $this->employee->update($request, $id);
+    }
+
+    public function changePassword($request, $id){
+        return $this->employee->changePassword($request, $id);
     }
 
     /**

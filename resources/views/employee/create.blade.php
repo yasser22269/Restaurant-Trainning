@@ -8,6 +8,19 @@
             <div class="container">
                 <!-- BEGIN row -->
                 <div class="row justify-content-center">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger" role="alert">
+                            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>خطا</strong>
+                            <ul class="list-unstyled">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <!-- BEGIN col-10 -->
                     <div class="col-xl-12">
                         <!-- BEGIN row -->
@@ -28,11 +41,11 @@
                                             {{ csrf_field() }}
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Name</label>
-                                                <input type="text" class="form-control" name="Name" id="exampleFormControlInput1" placeholder="Mahmoud Fathy" />
+                                                <input type="text" class="form-control" name="name" id="exampleFormControlInput1" placeholder="Mahmoud Fathy" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Email</label>
-                                                <input type="email" class="form-control" name="Email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                                                <input type="email" class="form-control" name="email" id="exampleFormControlInput1" placeholder="name@example.com" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Password</label>
@@ -40,7 +53,7 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Phone</label>
-                                                <input type="number" class="form-control" name="Phone" id="exampleFormControlInput1" placeholder="01000000000" />
+                                                <input type="number" class="form-control" name="phone" id="exampleFormControlInput1" placeholder="01000000000" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">National Id</label>
@@ -48,27 +61,27 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Age</label>
-                                                <input type="number" class="form-control" name="Age" id="exampleFormControlInput1" placeholder="27" />
+                                                <input type="number" class="form-control" name="age" id="exampleFormControlInput1" placeholder="27" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Address</label>
-                                                <input type="text" class="form-control" name="Address" id="exampleFormControlInput1" placeholder="cairo" />
+                                                <input type="text" class="form-control" name="address" id="exampleFormControlInput1" placeholder="cairo" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Salary</label>
-                                                <input type="text" class="form-control" name="Salary" id="exampleFormControlInput1" placeholder="1,000" />
+                                                <input type="text" class="form-control" name="salary" id="exampleFormControlInput1" placeholder="1,000" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Start Date</label>
-                                                <input type="date" class="form-control" name="date" id="exampleFormControlInput1" placeholder="1/2/2022" />
+                                                <input type="date" class="form-control" name="start_date" id="exampleFormControlInput1" placeholder="1/2/2022" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Position</label>
-                                                <input type="text" class="form-control" name="Position"  id="exampleFormControlInput1" placeholder="manager" />
+                                                <input type="text" class="form-control" name="position"  id="exampleFormControlInput1" placeholder="manager" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Office</label>
-                                                <input type="text" class="form-control" name="Office" id="exampleFormControlInput1" placeholder="officer" />
+                                                <input type="text" class="form-control" name="office" id="exampleFormControlInput1" placeholder="officer" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="Status" class="my-2">Status</label>
@@ -78,15 +91,8 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Status" class="my-2">Role</label>
-                                                <select class="form-select" name="role">
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Employee</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="Icon" class="my-2">Photo</label>
-                                                <input type="file" class="form-control" name="Photo[]" id="categoryImage" name="Photo" >
+                                                <input type="file" class="form-control" name="photo" id="categoryImage">
                                             </div>
                                             <button class="btn btn-outline-success mt-4 animation-on-hover d-block w-100 text-center"
                                                     type="submit">Submit</button>

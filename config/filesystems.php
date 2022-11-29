@@ -57,6 +57,11 @@ return [
             'root' => public_path('images/categories'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+        ],'employee' => [
+            'driver' => 'local',
+            'root' => public_path('images/employee'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
         ],
 
 

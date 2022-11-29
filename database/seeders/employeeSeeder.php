@@ -30,7 +30,6 @@ class employeeSeeder extends Seeder
             'position'      => 'employee',
             'office'        => 'intro',
             'status'        => '1',
-            'role_id'       => '1',
         ]);
     }
 }

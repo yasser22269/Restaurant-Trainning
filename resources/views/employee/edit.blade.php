@@ -28,19 +28,17 @@
                                               enctype="multipart/form-data">
                                             {{ method_field('patch') }}
                                             {{ csrf_field() }}
-                                            <input type="hidden" class="form-control" id="name"
-                                                   placeholder="Enter categories Name" name="id" value="{{ $employee->id }}">
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Name</label>
-                                                <input type="text" class="form-control" value="{{ $employee->name }}" name="Name" id="exampleFormControlInput1" placeholder="Mahmoud Fathy" />
+                                                <input type="text" class="form-control" value="{{ $employee->name }}" name="name" id="exampleFormControlInput1" placeholder="Mahmoud Fathy" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Email</label>
-                                                <input type="email" class="form-control" value="{{ $employee->email }}" name="Email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                                                <input type="email" class="form-control" value="{{ $employee->email }}" name="email" id="exampleFormControlInput1" placeholder="name@example.com" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Phone</label>
-                                                <input type="number" class="form-control" value="{{ $employee->phone }}" name="Phone" id="exampleFormControlInput1" placeholder="01000000000" />
+                                                <input type="number" class="form-control" value="{{ $employee->phone }}" name="phone" id="exampleFormControlInput1" placeholder="01000000000" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">National Id</label>
@@ -48,27 +46,27 @@
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Age</label>
-                                                <input type="number" class="form-control" value="{{ $employee->age }}" name="Age" id="exampleFormControlInput1" placeholder="27" />
+                                                <input type="number" class="form-control" value="{{ $employee->age }}" name="age" id="exampleFormControlInput1" placeholder="27" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Address</label>
-                                                <input type="text" class="form-control" value="{{ $employee->address }}" name="Address" id="exampleFormControlInput1" placeholder="cairo" />
+                                                <input type="text" class="form-control" value="{{ $employee->address }}" name="address" id="exampleFormControlInput1" placeholder="cairo" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Salary</label>
-                                                <input type="text" class="form-control" value="{{ $employee->salary }}" name="Salary" id="exampleFormControlInput1" placeholder="1,000" />
+                                                <input type="text" class="form-control" value="{{ $employee->salary }}" name="salary" id="exampleFormControlInput1" placeholder="1,000" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Start Date</label>
-                                                <input type="date" class="form-control" value="{{ $employee->start_date }}" name="date" id="exampleFormControlInput1" placeholder="1/2/2022" />
+                                                <input type="date" class="form-control" value="{{ $employee->start_date }}" name="start_date" id="exampleFormControlInput1" placeholder="1/2/2022" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Position</label>
-                                                <input type="text" class="form-control" value="{{ $employee->position }}" name="Position"  id="exampleFormControlInput1" placeholder="manager" />
+                                                <input type="text" class="form-control" value="{{ $employee->position }}" name="position"  id="exampleFormControlInput1" placeholder="manager" />
                                             </div>
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="exampleFormControlInput1">Office</label>
-                                                <input type="text" class="form-control" value="{{ $employee->office }}" name="Office" id="exampleFormControlInput1" placeholder="officer" />
+                                                <input type="text" class="form-control" value="{{ $employee->office }}" name="office" id="exampleFormControlInput1" placeholder="officer" />
                                             </div>
                                             <div class="form-group">
                                                 <label for="Status" class="my-2">Status</label>
@@ -86,15 +84,8 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Status" class="my-2">Role</label>
-                                                <select class="form-select" name="role">
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Employee</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="Icon" class="my-2">Photo</label>
-                                                <input type="file" class="form-control" name="Photo[]" id="categoryImage" name="Photo" >
+                                                <input type="file" class="form-control" name="photo" id="categoryImage" >
                                             </div>
                                             <button class="btn btn-outline-success mt-4 animation-on-hover d-block w-100 text-center"
                                                     type="submit">Submit</button>

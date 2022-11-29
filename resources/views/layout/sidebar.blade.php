@@ -329,6 +329,12 @@
                 </a>
             </div>
             <div class="menu-item">
+                <a href="{{ route('logout') }}" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-gear"></i></span>
+                    <span class="menu-text">Logout</span>
+                </a>
+            </div>
+            <div class="menu-item">
                 <a href="helper.html" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-gem"></i></span>
                     <span class="menu-text">Helper</span>

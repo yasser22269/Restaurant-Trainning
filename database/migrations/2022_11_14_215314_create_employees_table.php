@@ -22,6 +22,7 @@ class CreateEmployeesTable extends Migration {
             $table->string('office');
 			$table->string('photo')->nullable();
 			$table->boolean('status')->defualt(0);
+            $table->string('remember_token')->nullable();
 			$table->timestamps();
 		});
 	}

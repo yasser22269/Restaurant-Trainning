@@ -12,7 +12,9 @@ interface EmployeeRepositoryInterface
 
     public function edit($id);
 
-    public function update($request);
+    public function update($request, $id);
+
+    public function changePassword($request, $id);
 
     public function show($id);
 

@@ -2,8 +2,12 @@
 
 namespace App\Http\Repository;
 
+use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
+use http\Env\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 class EmployeeRepository implements EmployeeRepositoryInterface
 {
@@ -22,36 +26,12 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     {
         // TODO: Implement store() method.
 
-        try {
-            if($request->hasfile('Photo')){
-                foreach ($request->file('Photo') as $file){
-                    $name = $file->getClientOriginalName();
-                    $path =$file->storeAs('images/employee/'.$request->Name, $file->getClientOriginalName(), 'upload_attachments');
-
-            $employee = new Employee();
-            $employee->name         = $request->Name;
-            $employee->email        = $request->Email;
-            $employee->phone        = $request->Phone;
-            $employee->nid          = $request->nid;
-            $employee->password     = Hash::make($request->password);
-            $employee->age          = $request->Age;
-            $employee->address      = $request->Address;
-            $employee->salary       = $request->Salary;
-            $employee->start_date   = $request->date;
-            $employee->position     = $request->Position;
-            $employee->office       = $request->Office;
-            $employee->photo        = $path;
-            $employee->status       = $request->status;
-            $employee->role_id      = $request->role;
+            $request->validated();
+            $employee = Employee::create($request->except('_token', 'photo'));
+            $fileName = uploadImage('employee', $request->photo);
+            $employee->photo = $fileName;
 
             $employee->save();
-
-                }
-            }
-            return redirect()->route('employee.index')->with(['success' => 'تم ألاضافة بنجاح']);
-        }catch(\Exception $e){
-            return redirect()->route('employee.index')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-        }
 
 
     }
@@ -63,25 +43,21 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         return view('employee.edit', compact('employee'));
     }
 
-    public function update($request)
+    public function update($request, $id)
     {
         // TODO: Implement update() method.
         try {
-            $employee = Employee::findOrFail($request->id);
-            $employee->name = $request->Name;
-            $employee->email = $request->Email;
-            $employee->phone = $request->Phone;
-            $employee->nid = $request->nid;
-            $employee->age = $request->Age;
-            $employee->address = $request->Address;
-            $employee->salary = $request->Salary;
-            $employee->start_date = $request->date;
-            $employee->position = $request->Position;
-            $employee->office = $request->Office;
-            $employee->status = $request->status;
-            $employee->role_id = $request->role;
-
-            $employee->update();
+            $employee = Employee::findOrFail($id);
+            $employee->update($request->except('_token', 'photo'));
+            if($request->photo){
+                $photo = replaceurl($employee->photo);
+                if(File::exists($photo)){
+                    File::delete($photo);
+                }
+                $fileName = uploadImage('employee', $request->photo);
+                $employee->photo = $fileName;
+                $employee->save();
+            }
             return redirect()->route('employee.index')->with(['success' => 'تم التحديث بنجاح']);
         }catch (\Exception $e){
             return redirect()->route('employee.index')->with(['error' => 'حدث خطا ما اثناء عملية التحديث الرجاء المحاوله لاحقا']);
@@ -94,6 +70,20 @@ class EmployeeRepository implements EmployeeRepositoryInterface
         $employees = Employee::findOrFail($id);
         return view('employee.profile', compact('employees'));
     }
+    public function changePassword($request, $id)
+    {
+        // TODO: Implement show() method.
+        if(!Hash::check($request->old_password, auth()->user()->password)){
+            return back()->with("error", "Old Password Doesn't match!");
+        }
+
+
+        #Update the new Password
+        Employee::where('id', $id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+    }
+
 
     public function destroy($id)
     {
