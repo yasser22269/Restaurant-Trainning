@@ -78,11 +78,10 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         return $this->employee->update($request, $id);
     }
 
-    public function changePassword($request, $id){
+    public function changePassword(Request $request, $id){
         return $this->employee->changePassword($request, $id);
     }
 

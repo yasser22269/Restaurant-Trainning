@@ -25,13 +25,17 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     public function store($request)
     {
         // TODO: Implement store() method.
+try{
+        $request->validated();
+        $employee = Employee::create($request->except('_token', 'photo'));
+        $fileName = uploadImage('employee', $request->photo);
+        $employee->photo = $fileName;
 
-            $request->validated();
-            $employee = Employee::create($request->except('_token', 'photo'));
-            $fileName = uploadImage('employee', $request->photo);
-            $employee->photo = $fileName;
-
-            $employee->save();
+        $employee->save();
+        return redirect()->route('employee.index')->with(['success' => 'تم الاضافة بنجاح']);
+    }catch (\Exception $e){
+        return redirect()->route('employee.index')->with(['error' => 'حدث خطا ما اثناء عملية التحديث الرجاء المحاوله لاحقا']);
+    }
 
 
     }
@@ -73,15 +77,15 @@ class EmployeeRepository implements EmployeeRepositoryInterface
     public function changePassword($request, $id)
     {
         // TODO: Implement show() method.
-        if(!Hash::check($request->old_password, auth()->user()->password)){
-            return back()->with("error", "Old Password Doesn't match!");
-        }
-
-
-        #Update the new Password
-        Employee::where('id', $id)->update([
-            'password' => Hash::make($request->new_password)
-        ]);
+//        if(!Hash::check($request->old_password, auth()->user()->password)){
+//            return back()->with("error", "Old Password Doesn't match!");
+//        }
+//
+//
+//        #Update the new Password
+//        Employee::where('id', $id)->update([
+//            'password' => Hash::make($request->new_password)
+//        ]);
     }
 
 
