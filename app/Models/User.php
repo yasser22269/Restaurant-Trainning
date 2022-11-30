@@ -13,9 +13,8 @@ class User extends Model
     public $timestamps = true;
     protected $fillable = array('name', 'phone', 'address');
 
-
-    public function roles(){
-        return $this->belongsToMany(Role::class);
-    }
+//    public function roles(){
+//        return $this->belongsToMany(Role::class);
+//    }
 
 }
