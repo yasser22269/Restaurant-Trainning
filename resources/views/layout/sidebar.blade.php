@@ -43,6 +43,12 @@
                     </div>
                 </div>
             </div>
+            <div class="menu-item">
+                <a href="{{ url('settings') }}" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-gear"></i></span>
+                    <span class="menu-text">Settings</span>
+                </a>
+            </div>
             <div class="menu-header">Components</div>
             <div class="menu-item">
                 <a href="widgets.html" class="menu-link">
@@ -314,12 +320,6 @@
                 <a href="calendar.html" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-calendar4"></i></span>
                     <span class="menu-text">Calendar</span>
-                </a>
-            </div>
-            <div class="menu-item">
-                <a href="settings.html" class="menu-link">
-                    <span class="menu-icon"><i class="bi bi-gear"></i></span>
-                    <span class="menu-text">Settings</span>
                 </a>
             </div>
             <div class="menu-item">

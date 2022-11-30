@@ -7,7 +7,6 @@
 @endif
 
 
-@if(Session::has('success'))
     <script>
         $(document).ready(function() {
             toastr.options = {
@@ -25,7 +24,11 @@
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
-            toastr.success("{{ session('success') }}")
         })
-    </script>
+@if(Session::has('success'))
+            toastr.success("{{ session('success') }}")
 @endif
+@if(Session::has('error'))
+            toastr.error("{{ session('error') }}")
+@endif
+    </script>
