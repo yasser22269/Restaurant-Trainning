@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,14 @@ Route::group(
     Route::resource('Attribute', AttributeController::class);
     Route::resource('Product', ProductController::class);
 
+    Route::resource('Reservations', ReservationController::class);
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('/',[SettingController::class,'index'])->name('index');
+        Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
+    });
+
+
+
     Route::resource('employee', EmployeeController::class);
 //    Route::post('changePassword', [EmployeeController::class, 'changePassword'])->name('changePassword');
     Route::patch('employee/{id}', 'EmployeeController@changePassword')->name('employee.changePassword');
@@ -53,5 +62,6 @@ Route::group(
             Route::get('/',[SettingController::class,'index'])->name('index');
             Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
         });
+
 
 
