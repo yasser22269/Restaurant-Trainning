@@ -8,11 +8,7 @@ class CreateForeignKeys extends Migration {
 
 	public function up()
 	{
-		Schema::table('employees', function(Blueprint $table) {
-			$table->foreign('role_id')->references('id')->on('roles')
-						->onDelete('set null')
-						->onUpdate('restrict');
-		});
+
         Schema::table('options', function(Blueprint $table) {
             $table->foreign('product_id')->references('id')->on('products')
                 ->onDelete('cascade')
@@ -28,11 +24,6 @@ class CreateForeignKeys extends Migration {
 						->onDelete('cascade')
 						->onUpdate('cascade');
 		});
-		Schema::table('order', function(Blueprint $table) {
-			$table->foreign('emp_id')->references('id')->on('employees')
-						->onDelete('set null')
-						->onUpdate('set null');
-		});
 		Schema::table('take_away_orders', function(Blueprint $table) {
 			$table->foreign('order_id')->references('id')->on('order')
 						->onDelete('restrict')
@@ -50,11 +41,6 @@ class CreateForeignKeys extends Migration {
 		});
 		Schema::table('delivery_orders', function(Blueprint $table) {
 			$table->foreign('user_id')->references('id')->on('users')
-						->onDelete('restrict')
-						->onUpdate('restrict');
-		});
-		Schema::table('delivery_orders', function(Blueprint $table) {
-			$table->foreign('emp_id')->references('id')->on('employees')
 						->onDelete('restrict')
 						->onUpdate('restrict');
 		});
