@@ -17,9 +17,15 @@
                 </a>
             </div>
             <div class="menu-item">
+
                 <a href="{{ url('/Reservations') }}" class="menu-link">
                     <span class="menu-icon"><i class="fas fa-table"></i></span>
                     <span class="menu-text">Reservations</span>
+
+                <a href="{{ route('employee.index') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-user"></i></span>
+                    <span class="menu-text">Employee</span>
+
                 </a>
             </div>
             <div class="menu-item">
@@ -317,7 +323,7 @@
             <div class="menu-divider"></div>
             <div class="menu-header">Users</div>
             <div class="menu-item">
-                <a href="profile.html" class="menu-link">
+                <a href="{{route('employee.show', Auth::user()->id)}}" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-people"></i></span>
                     <span class="menu-text">Profile</span>
                 </a>
@@ -329,6 +335,20 @@
                 </a>
             </div>
             <div class="menu-item">
+
+                <a href="settings.html" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-gear"></i></span>
+                    <span class="menu-text">Settings</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{{ route('logout') }}" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-gear"></i></span>
+                    <span class="menu-text">Logout</span>
+                </a>
+            </div>
+            <div class="menu-item">
+
                 <a href="helper.html" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-gem"></i></span>
                     <span class="menu-text">Helper</span>
