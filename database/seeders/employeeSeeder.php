@@ -2,11 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\Employee;
+use App\Models\Payment;
+use App\Models\Role;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class employeeSeeder extends Seeder
+class EmployeeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,21 +19,32 @@ class employeeSeeder extends Seeder
      */
     public function run()
     {
-        //
-        DB::table('employees')->delete();
-        DB::table('employees')->insert([
-            'name'          => 'mahmoud',
-            'email'         => 'mahmoud@gmail.com',
-            'phone'         => '01098822311',
-            'nid'           => '1',
-            'password'      => Hash::make('password'),
-            'age'           => '28',
-            'address'       => 'cairo',
-            'salary'        => '4000',
-            'start_date'    => '2022-11-08',
-            'position'      => 'employee',
-            'office'        => 'intro',
-            'status'        => '1',
-        ]);
+        $users = [
+            [
+                'name' => 'mohamed',
+                'email' => 'm.mohamedeid11@gmail.com',
+                'password' => 'mohamed',
+            ],
+            [
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => 'admin',
+            ],
+        ];
+
+        foreach($users as $i => $one)
+        {
+
+            Employee::factory()->create(
+                [
+                    'email' => $one['email'],
+                    'name' => ucfirst($one['name']),
+                    'password' => Hash::make($one['password'])
+                ]
+            );
+
+        }
+        Employee::factory()->count(5)->create();
+
     }
 }
