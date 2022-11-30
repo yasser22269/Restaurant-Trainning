@@ -17,6 +17,12 @@
                 </a>
             </div>
             <div class="menu-item">
+                <a href="{{ url('/Reservations') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-table"></i></span>
+                    <span class="menu-text">Reservations</span>
+                </a>
+            </div>
+            <div class="menu-item">
                 <a href="{{ url('/categories') }}" class="menu-link">
                     <span class="menu-icon"><i class="fas fa-book"></i></span>
                     <span class="menu-text">Categories</span>

@@ -43,7 +43,6 @@
                             <div class="form-group">
                                 <label for="Status" class="my-2">Status</label>
                                 <select class="form-select" name="status">
-                                    <option selected hidden>Status</option>
                                     <option value="1">Available</option>
                                     <option value="0">Un Available</option>
                                 </select>
