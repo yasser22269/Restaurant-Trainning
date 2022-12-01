@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Employee\EmployeeController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TablesController;
 use App\Http\Controllers\CategoriesController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +39,12 @@ Route::group(['middleware' => ['auth' , 'admin']], function(){
     Route::resource('/categories', CategoriesController::class);
     Route::resource('Attribute', AttributeController::class);
     Route::resource('Product', ProductController::class);
-
+    Route::resource('/zone', ZoneController::class);
     Route::resource('Reservations', ReservationController::class);
     Route::resource('employee', EmployeeController::class);
 //    Route::post('changePassword', [EmployeeController::class, 'changePassword'])->name('changePassword');
     Route::patch('employee/{id}', 'EmployeeController@changePassword')->name('employee.changePassword');
+    Route::resource('user', UserController::class);
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 });

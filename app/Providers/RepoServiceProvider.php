@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Http\Repository\EmployeeRepository;
 use App\Http\Repository\EmployeeRepositoryInterface;
+use App\Http\Repository\UserRepository;
+use App\Http\Repository\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepoServiceProvider extends ServiceProvider
@@ -18,6 +20,12 @@ class RepoServiceProvider extends ServiceProvider
         $this->app->bind(
             EmployeeRepositoryInterface::class,
             EmployeeRepository::class,
+
+        );
+        $this->app->bind(
+            UserRepositoryInterface::class,
+            UserRepository::class,
+
         );
     }
 

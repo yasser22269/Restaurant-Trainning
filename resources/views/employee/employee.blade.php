@@ -68,7 +68,33 @@
                                                                class="btn btn-outline-success">show</a>
                                                         </td>
                                                     </tr>
-
+                                                    <div class="modal modal-cover fade" id="modalCoverExample">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h3 class="modal-title">Delete {{ $employee->name }}</h3>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p class="mb-3">Do you want to Delete {{ $employee->name }}</p>
+                                                                </div>
+                                                                <div class="pt-3">
+                                                                    <div class="modal-footer">
+                                                                        <button style="width:15%;" type="button" class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal">Close</button>
+                                                                        <form action="{{ route('employee.destroy', $employee->id ) }}" method="post"
+                                                                              style="display: inline">
+                                                                            {{ method_field('delete') }}
+                                                                            {{ csrf_field() }}
+                                                                            <input type="hidden" name="id" value="{{ $employee->id }}"
+                                                                                   id="id">
+                                                                            <button style="width:100%;" class="btn btn-danger">حذف</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @endforeach
                                                 </tbody>
                                             </table>
@@ -83,33 +109,7 @@
                                 </div>
                                 <!-- END #datatable -->
                             </div>
-                            <div class="modal modal-cover fade" id="modalCoverExample">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h3 class="modal-title">Delete {{ $employee->name }}</h3>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p class="mb-3">Do you want to Delete {{ $employee->name }}</p>
-                                            </div>
-                                            <div class="pt-3">
-                                                <div class="modal-footer">
-                                                    <button style="width:15%;" type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
-                                                    <form action="{{ route('employee.destroy', $employee->id ) }}" method="post"
-                                                          style="display: inline">
-                                                        {{ method_field('delete') }}
-                                                        {{ csrf_field() }}
-                                                        <input type="hidden" name="id" value="{{ $employee->id }}"
-                                                               id="id">
-                                                        <button style="width:100%;" class="btn btn-danger">حذف</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <!-- END col-9-->
                         </div>
