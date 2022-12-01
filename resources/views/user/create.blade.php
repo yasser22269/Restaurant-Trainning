@@ -1,4 +1,5 @@
 @extends('layout.master')
+@section('title','users Create')
 @section('content')
     <!-- BEGIN #app -->
     <div id="app" class="app">
@@ -34,7 +35,7 @@
                                 <hr class="mb-4" />
                                 <div class="card">
                                     <div class="card-header d-flex align-items-center bg-white bg-opacity-15 fw-400">
-                                        Create Employee
+                                        Create User
                                     </div>
                                     <div class="card-body">
                                         <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
