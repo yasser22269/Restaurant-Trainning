@@ -34,6 +34,12 @@
                     <span class="menu-text">Categories</span>
                 </a>
             </div>
+            <div class="menu-item">
+                <a href="{{ url('/zone') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fa fa-map-signs" aria-hidden="true"></i></span>
+                    <span class="menu-text">Zone</span>
+                </a>
+            </div>
             <div class="menu-item has-sub">
                 <a href="#" class="menu-link">
                     <span class="menu-icon">
