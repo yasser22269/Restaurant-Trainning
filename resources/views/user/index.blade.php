@@ -46,8 +46,7 @@
                                                         <td>{{$user->address}}</td>
                                                         <td>
                                                             <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#modalCoverExample">Delete</button>
-                                                            <a href="{{ route('employee.edit', $user->id) }}"
-                                                               class="btn btn-outline-warning">update</a>
+                                                            
                                                         </td>
                                                     </tr>
                                                     <div class="modal modal-cover fade" id="modalCoverExample">
