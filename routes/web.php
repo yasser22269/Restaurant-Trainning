@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Employee\EmployeeController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TablesController;
 use App\Http\Controllers\CategoriesController;
@@ -47,6 +48,7 @@ Route::group(
     Route::resource('employee', EmployeeController::class);
 //    Route::post('changePassword', [EmployeeController::class, 'changePassword'])->name('changePassword');
     Route::patch('employee/{id}', 'EmployeeController@changePassword')->name('employee.changePassword');
+    Route::resource('user', UserController::class);
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 });

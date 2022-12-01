@@ -35,9 +35,15 @@
                 </a>
             </div>
             <div class="menu-item">
+
+                <a href="{{ route('user.index') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-user"></i></span>
+                    <span class="menu-text">User</span>
+
                 <a href="{{ url('/zone') }}" class="menu-link">
                     <span class="menu-icon"><i class="fa fa-map-signs" aria-hidden="true"></i></span>
                     <span class="menu-text">Zone</span>
+
                 </a>
             </div>
             <div class="menu-item has-sub">
