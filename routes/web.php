@@ -8,6 +8,7 @@ use App\Http\Controllers\AttributeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ Route::group(
     Route::resource('/categories', CategoriesController::class);
     Route::resource('Attribute', AttributeController::class);
     Route::resource('Product', ProductController::class);
-
+    Route::resource('/zone', ZoneController::class);
     Route::resource('Reservations', ReservationController::class);
     Route::resource('employee', EmployeeController::class);
 //    Route::post('changePassword', [EmployeeController::class, 'changePassword'])->name('changePassword');
