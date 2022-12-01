@@ -28,13 +28,9 @@ Route::group(['middleware'=>['guest']], function(){
     });
 });
 
-Route::group(
-    [
-        'middleware' => ['auth' ]
-    ], function(){
+Route::group(['middleware' => ['auth' , 'admin']], function(){
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
-    Route::get('/', function()
-    {
+    Route::get('/', function() {
         return view('index');
     });
     Route::resource('/table', TablesController::class);
@@ -49,10 +45,11 @@ Route::group(
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 });
-        Route::prefix('settings')->name('settings.')->group(function () {
-            Route::get('/',[SettingController::class,'index'])->name('index');
-            Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
-        });
+
+Route::prefix('settings')->name('settings.')->group(function () {
+    Route::get('/',[SettingController::class,'index'])->name('index');
+    Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
+});
 
 
 

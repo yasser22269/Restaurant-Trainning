@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Employee;
 use App\Models\Payment;
-use App\Models\Role;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
