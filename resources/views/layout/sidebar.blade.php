@@ -17,9 +17,15 @@
                 </a>
             </div>
             <div class="menu-item">
+
+                <a href="{{ url('/Reservations') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fas fa-table"></i></span>
+                    <span class="menu-text">Reservations</span>
+
                 <a href="{{ route('employee.index') }}" class="menu-link">
                     <span class="menu-icon"><i class="fas fa-user"></i></span>
                     <span class="menu-text">Employee</span>
+
                 </a>
             </div>
             <div class="menu-item">
@@ -29,9 +35,15 @@
                 </a>
             </div>
             <div class="menu-item">
+
                 <a href="{{ route('user.index') }}" class="menu-link">
                     <span class="menu-icon"><i class="fas fa-user"></i></span>
                     <span class="menu-text">User</span>
+
+                <a href="{{ url('/zone') }}" class="menu-link">
+                    <span class="menu-icon"><i class="fa fa-map-signs" aria-hidden="true"></i></span>
+                    <span class="menu-text">Zone</span>
+
                 </a>
             </div>
             <div class="menu-item has-sub">
@@ -54,6 +66,12 @@
                         </a>
                     </div>
                 </div>
+            </div>
+            <div class="menu-item">
+                <a href="{{ url('settings') }}" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-gear"></i></span>
+                    <span class="menu-text">Settings</span>
+                </a>
             </div>
             <div class="menu-header">Components</div>
             <div class="menu-item">
@@ -329,6 +347,7 @@
                 </a>
             </div>
             <div class="menu-item">
+
                 <a href="settings.html" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-gear"></i></span>
                     <span class="menu-text">Settings</span>
@@ -341,6 +360,7 @@
                 </a>
             </div>
             <div class="menu-item">
+
                 <a href="helper.html" class="menu-link">
                     <span class="menu-icon"><i class="bi bi-gem"></i></span>
                     <span class="menu-text">Helper</span>

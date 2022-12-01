@@ -1,6 +1,6 @@
 @extends('layout.master')
 
-@section('title','Table ADD')
+@section('title','Zone ADD')
 
 <!-- BEGIN #app -->
 @section('content')
@@ -24,21 +24,21 @@
                 @endif
                 <div class="card">
                     <div class="card-header d-flex align-items-center bg-white bg-opacity-15 fw-400">
-                        Create Table
+                        Create Zone
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('table.store') }}" method="post">
+                        <form action="{{ route('zone.store') }}" method="post">
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="Table Name" class="my-2">Table Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Table Name"
+                                <label for="Zone Name" class="my-2">Zone Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter Zone Name"
                                     name="name" value="{{ old('name') }}">
                             </div>
                             <div class="form-group">
-                                <label for="Number of Chair" class="my-2">Number of Chair</label>
-                                <input type="text" class="form-control" id="number_of_chairs"
-                                    placeholder="Enter Number of Chair" name="number_of_chairs"
-                                    value="{{ old('number_of_chairs') }}">
+                                <label for="zone_price" class="my-2">Zone Price</label>
+                                <input type="text" class="form-control" id="zone_price"
+                                    placeholder="Enter Zone Price" name="price"
+                                    value="{{ old('zone_price') }}">
                             </div>
                             <div class="form-group">
                                 <label for="Status" class="my-2">Status</label>

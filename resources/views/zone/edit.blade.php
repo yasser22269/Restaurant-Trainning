@@ -1,6 +1,5 @@
 @extends('layout.master')
-
-@section('title','Table ADD')
+@section('title','zone Edit')
 
 <!-- BEGIN #app -->
 @section('content')
@@ -24,27 +23,37 @@
                 @endif
                 <div class="card">
                     <div class="card-header d-flex align-items-center bg-white bg-opacity-15 fw-400">
-                        Create Table
+                        Update zones {{ $zones->name }}
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('table.store') }}" method="post">
+                        <form action="{{ route('zone.update', $zones->id) }}" method="post">
+                            {{ method_field('patch') }}
                             {{ csrf_field() }}
                             <div class="form-group">
-                                <label for="Table Name" class="my-2">Table Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter Table Name"
-                                    name="name" value="{{ old('name') }}">
+                                <label for="zones Name" class="my-2">zones Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter zones Name"
+                                    name="name" value="{{ $zones->name }}">
                             </div>
                             <div class="form-group">
-                                <label for="Number of Chair" class="my-2">Number of Chair</label>
-                                <input type="text" class="form-control" id="number_of_chairs"
-                                    placeholder="Enter Number of Chair" name="number_of_chairs"
-                                    value="{{ old('number_of_chairs') }}">
+                                <label for="Zone Price" class="my-2">zones price</label>
+                                <input type="text" class="form-control" id="zone_price"
+                                    placeholder="Enter zones Price" name="price"
+                                    value="{{ $zones->price }}">
                             </div>
                             <div class="form-group">
                                 <label for="Status" class="my-2">Status</label>
-                                <select class="form-select" name="status">
-                                    <option value="1">Available</option>
+                                <select class="form-select" name="status" value="{{$zones->status}}">
+                                    @if ($zones->status==1)
+                                    <option selected value="1">Available</option>
                                     <option value="0">Un Available</option>
+                                    @else
+                                        @if ($zones->status==0)
+                                            <option value="1">Available</option>
+                                            <option selected value="0">Un Available</option>
+
+                                        @endif
+                            @endif
+
                                 </select>
                             </div>
                             <button class="btn btn-outline-success mt-4 animation-on-hover d-block w-100 text-center"

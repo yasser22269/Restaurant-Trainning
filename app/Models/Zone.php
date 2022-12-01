@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
 
-class Zone extends Model 
+
+class Zone extends Model
 {
 
     protected $table = 'zones';
     public $timestamps = true;
-    protected $fillable = array('name', 'price');
+    protected $fillable = array('name', 'price', 'status');
 
 }
