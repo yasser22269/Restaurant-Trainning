@@ -7,6 +7,8 @@
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
+           <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
