@@ -1,10 +1,9 @@
-@extends('layout.master')
+@extends('layout.masterFront')
 @section('title', 'Front Product Index')
 <!-- BEGIN #app -->
 @section('content')
-    <div id="app" class="app">
         <!-- BEGIN #content -->
-        <div id="content" class="app-content container">
+		<div id="content" class="app-content p-1 ps-xl-4 pe-xl-4 pt-xl-3 pb-xl-3">
             <!-- BEGIN row -->
             <div class="pos card" id="pos">
                 <div class="pos-container card-body">
@@ -66,6 +65,217 @@
                             </div>
                         </div>
                     </div>
+                    					<div class="pos-sidebar" id="pos-sidebar">
+						<div class="h-100 d-flex flex-column p-0">
+							<!-- BEGIN pos-sidebar-header -->
+							<div class="pos-sidebar-header">
+								<div class="back-btn">
+									<button type="button" data-toggle-class="pos-mobile-sidebar-toggled" data-toggle-target="#pos" class="btn">
+										<i class="bi bi-chevron-left"></i>
+									</button>
+								</div>
+								<div class="icon"><img src="../assets/img/pos/icon-table.svg" alt="" /></div>
+								<div class="title">Table 01</div>
+								<div class="order">Order: <b>#0056</b></div>
+							</div>
+							<!-- END pos-sidebar-header -->
+						
+							<!-- BEGIN pos-sidebar-nav -->
+							<div class="pos-sidebar-nav">
+								<ul class="nav nav-tabs nav-fill">
+									<li class="nav-item">
+										<a class="nav-link active" href="#" data-bs-toggle="tab" data-bs-target="#newOrderTab">New Order (5)</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#" data-bs-toggle="tab" data-bs-target="#orderHistoryTab">Order History (0)</a>
+									</li>
+								</ul>
+							</div>
+							<!-- END pos-sidebar-nav -->
+						
+							<!-- BEGIN pos-sidebar-body -->
+							<div class="pos-sidebar-body tab-content" data-scrollbar="true" data-height="100%">
+								<!-- BEGIN #newOrderTab -->
+								<div class="tab-pane fade h-100 show active" id="newOrderTab">
+									<!-- BEGIN pos-order -->
+									<div class="pos-order">
+										<div class="pos-order-product">
+											<div class="img" style="background-image: url(../assets/img/pos/product-2.jpg)"></div>
+											<div class="flex-1">
+												<div class="h6 mb-1">Grill Pork Chop</div>
+												<div class="small">$12.99</div>
+												<div class="small mb-2">- size: large</div>
+												<div class="d-flex">
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-minus"></i></a>
+													<input type="text" class="form-control w-50px form-control-sm mx-2 bg-white bg-opacity-25 bg-white bg-opacity-25 text-center" value="01" />
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-plus"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="pos-order-price">
+											$12.99
+										</div>
+									</div>
+									<!-- END pos-order -->
+									<!-- BEGIN pos-order -->
+									<div class="pos-order">
+										<div class="pos-order-product">
+											<div class="img" style="background-image: url(../assets/img/pos/product-8.jpg)"></div>
+											<div class="flex-1">
+												<div class="h6 mb-1">Orange Juice</div>
+												<div class="small">$5.00</div>
+												<div class="small mb-2">
+													- size: large<br />
+													- less ice
+												</div>
+												<div class="d-flex">
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-minus"></i></a>
+													<input type="text" class="form-control w-50px form-control-sm mx-2 bg-white bg-opacity-25 bg-white bg-opacity-25 text-center" value="02" />
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-plus"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="pos-order-price">
+											$10.00
+										</div>
+										<div class="pos-order-confirmation text-center d-flex flex-column justify-content-center">
+											<div class="mb-1">
+												<i class="bi bi-trash fs-36px lh-1"></i>
+											</div>
+											<div class="mb-2">Remove this item?</div>
+											<div>
+												<a href="#" class="btn btn-outline-white btn-sm ms-auto me-2 width-100px">No</a>
+												<a href="#" class="btn btn-outline-theme btn-sm width-100px">Yes</a>
+											</div>
+										</div>
+									</div>
+									<!-- END pos-order -->
+									<!-- BEGIN pos-order -->
+									<div class="pos-order">
+										<div class="pos-order-product">
+											<div class="img" style="background-image: url(../assets/img/pos/product-1.jpg)"></div>
+											<div class="flex-1">
+												<div class="h6 mb-1">Grill chicken chop</div>
+												<div class="small">$10.99</div>
+												<div class="small mb-2">
+													- size: large<br />
+													- spicy: medium
+												</div>
+												<div class="d-flex">
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-minus"></i></a>
+													<input type="text" class="form-control w-50px form-control-sm mx-2 bg-white bg-opacity-25 bg-white bg-opacity-25 text-center" value="01" />
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-plus"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="pos-order-price">
+											$10.99
+										</div>
+									</div>
+									<!-- END pos-order -->
+									<!-- BEGIN pos-order -->
+									<div class="pos-order">
+										<div class="pos-order-product">
+											<div class="img" style="background-image: url(../assets/img/pos/product-5.jpg)"></div>
+											<div class="flex-1">
+												<div class="h6 mb-1">Hawaiian Pizza</div>
+												<div class="small">$15.00</div>
+												<div class="small mb-2">
+													- size: large<br />
+													- more onion
+												</div>
+												<div class="d-flex">
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-minus"></i></a>
+													<input type="text" class="form-control w-50px form-control-sm mx-2 bg-white bg-opacity-25 bg-white bg-opacity-25 text-center" value="01" />
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-plus"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="pos-order-price">
+											$15.00
+										</div>
+									</div>
+									<!-- END pos-order -->
+									<!-- BEGIN pos-order -->
+									<div class="pos-order">
+										<div class="pos-order-product">
+											<div class="img" style="background-image: url(../assets/img/pos/product-10.jpg)"></div>
+											<div class="flex-1">
+												<div class="h6 mb-1">Mushroom Soup</div>
+												<div class="small">$3.99</div>
+												<div class="small mb-2">
+													- size: large<br />
+													- more cheese
+												</div>
+												<div class="d-flex">
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-minus"></i></a>
+													<input type="text" class="form-control w-50px form-control-sm mx-2 bg-white bg-opacity-25 bg-white bg-opacity-25 text-center" value="01" />
+													<a href="#" class="btn btn-outline-theme btn-sm"><i class="fa fa-plus"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="pos-order-price">
+											$3.99
+										</div>
+									</div>
+									<!-- END pos-order -->
+								</div>
+								<!-- END #orderHistoryTab -->
+							
+								<!-- BEGIN #orderHistoryTab -->
+								<div class="tab-pane fade h-100" id="orderHistoryTab">
+									<div class="h-100 d-flex align-items-center justify-content-center text-center p-20">
+										<div>
+											<div class="mb-3 mt-n5">
+												<svg width="6em" height="6em" viewBox="0 0 16 16" class="text-gray-300" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+													<path fill-rule="evenodd" d="M14 5H2v9a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5zM1 4v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4H1z"/>
+													<path d="M8 1.5A2.5 2.5 0 0 0 5.5 4h-1a3.5 3.5 0 1 1 7 0h-1A2.5 2.5 0 0 0 8 1.5z"/>
+												</svg>
+											</div>
+											<h5>No order history found</h5>
+										</div>
+									</div>
+								</div>
+								<!-- END #orderHistoryTab -->
+							</div>
+							<!-- END pos-sidebar-body -->
+						
+							<!-- BEGIN pos-sidebar-footer -->
+							<div class="pos-sidebar-footer">
+								<div class="d-flex align-items-center mb-2">
+									<div>Subtotal</div>
+									<div class="flex-1 text-end h6 mb-0">$30.98</div>
+								</div>
+								<div class="d-flex align-items-center">
+									<div>Taxes (6%)</div>
+									<div class="flex-1 text-end h6 mb-0">$2.12</div>
+								</div>
+								<hr />
+								<div class="d-flex align-items-center mb-2">
+									<div>Total</div>
+									<div class="flex-1 text-end h4 mb-0">$33.10</div>
+								</div>
+								<div class="mt-3">
+									<div class="btn-group d-flex">
+										<a href="#" class="btn btn-outline-default rounded-0 w-80px">
+											<i class="bi bi-bell fa-lg"></i><br />
+											<span class="small">Service</span>
+										</a>
+										<a href="#" class="btn btn-outline-default rounded-0 w-80px">
+											<i class="bi bi-receipt fa-fw fa-lg"></i><br />
+											<span class="small">Bill</span>
+										</a>
+										<a href="#" class="btn btn-outline-theme rounded-0 w-150px">
+											<i class="bi bi-send-check fa-lg"></i><br />
+											<span class="small">Submit Order</span>
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- END pos-sidebar-footer -->
+						</div>
+					</div>
+
                 </div>
                 <div class="card-arrow">
                     <div class="card-arrow-top-left"></div>
@@ -82,7 +292,6 @@
         <!-- BEGIN btn-scroll-top -->
         <a href="#" data-toggle="scroll-to-top" class="btn-scroll-top fade"><i class="fa fa-arrow-up"></i></a>
         <!-- END btn-scroll-top -->
-    </div>
     <!-- END #app -->
     <div class="modal fade modal-pos" id="showDetail" tabindex="-1" role="dialog" aria-labelledby="showDetailLabel"
         aria-hidden="true">
