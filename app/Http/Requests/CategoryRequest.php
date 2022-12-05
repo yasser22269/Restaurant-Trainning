@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -24,9 +25,16 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
+            'name' => ['required', Rule::unique('categories', 'name')->ignore($this->categories)],
             'status' => 'required|numeric',
             'icon' => 'mimes:jpg,jpeg,png,svg',
         ];
     }
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Category booked',
+        ];
+    }
+    
 }
