@@ -73,6 +73,18 @@
                     <span class="menu-text">Settings</span>
                 </a>
             </div>
+            <div class="menu-item">
+                <a href="{{ url('timeemp') }}" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-gear"></i></span>
+                    <span class="menu-text">Empolyee Time</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="{{ url('log') }}" class="menu-link">
+                    <span class="menu-icon"><i class="bi bi-gear"></i></span>
+                    <span class="menu-text">Logs</span>
+                </a>
+            </div>
             <div class="menu-header">Components</div>
             <div class="menu-item">
                 <a href="widgets.html" class="menu-link">

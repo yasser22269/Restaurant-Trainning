@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use App\Models\TimeEmp;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Employee extends Authenticatable
 {
@@ -23,6 +24,12 @@ class Employee extends Authenticatable
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = bcrypt($value);
     }
+        public function timeEmp()
+    {
+        return $this->hasOne(TimeEmp::class, 'emp_id');
+    }
+
+
 //    public function emp_type()
 //    {
 //        return $this->belongsTo('App\Models\Employee', 'emp_type');

@@ -45,7 +45,7 @@ class CategoriesController extends Controller
              $fileName = uploadImage('categories', $request->icon);
              $Category->icon = $fileName;
              $Category->save();
-
+             logsHelper(" Add Category " . $request->name);
              DB::commit();
              return redirect()->route('categories.index')->with(['success' => 'تم ألاضافة بنجاح']);
          } catch (\Exception $ex) {
@@ -102,6 +102,8 @@ class CategoriesController extends Controller
                 $fileName = uploadImage('categories', $request->icon);
                 $Category->icon = $fileName;
                 $Category->save();
+                logsHelper(" Update Category " . $request->name);
+
             }
             //End Change Photo
 
@@ -120,7 +122,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request ,$id)
     {
         try {
             $Category = Category::find($id);
@@ -135,6 +137,8 @@ class CategoriesController extends Controller
             }
 
             $Category->delete();
+            logsHelper(" Delete Category " . $request->name);
+
             return redirect()->route('categories.index')->with(['success' => 'تم الحذف بنجاح']);
         }catch (\Exception $ex) {
             DB::rollback();
