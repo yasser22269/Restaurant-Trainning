@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
+use App\Models\TimeEmp;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
@@ -32,6 +36,12 @@ class Employee extends Model implements AuthenticatableContract
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = bcrypt($value);
     }
+        public function timeEmp()
+    {
+        return $this->hasOne(TimeEmp::class, 'emp_id');
+    }
+
+
 //    public function emp_type()
 //    {
 //        return $this->belongsTo('App\Models\Employee', 'emp_type');
