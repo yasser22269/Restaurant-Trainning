@@ -32,10 +32,7 @@ Route::group(['middleware'=>['guest']], function(){
     });
 });
 
-Route::group(
-    [
-        'middleware' => ['auth' ]
-    ], function(){
+Route::group(['middleware' => ['auth']], function(){
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', function()
     {

@@ -2,19 +2,31 @@
 
 namespace App\Models;
 
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Auth\Authenticatable;
 use App\Models\TimeEmp;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Employee extends Authenticatable
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+
+
+class Employee extends Model implements AuthenticatableContract
 {
 
     use Notifiable;
+    use Authenticatable;
+
+    use HasFactory;
+    use HasApiTokens;
 
     protected $table = 'employees';
     public $timestamps = true;
-    protected $fillable = ['name', 'email', 'phone', 'nid', 'password', 'age', 'address', 'salary', 'start_date', 'position', 'office', 'photo', 'status', 'role_id'];
+    protected $fillable = ['name', 'email', 'phone', 'nid', 'password', 'age', 'address', 'salary', 'start_date', 'position', 'office', 'photo', 'status'];
 
 
 
@@ -34,5 +46,33 @@ class Employee extends Authenticatable
 //    {
 //        return $this->belongsTo('App\Models\Employee', 'emp_type');
 //    }
+
+    /**
+     * @param string $user
+     * @return bool
+     */
+
+    public function hasAnyRole(string $role)
+    {
+        return null !== $this->roles()->where('name', $role)->first();
+    }
+
+    /**
+     * @param array $user
+     * @return bool
+     */
+
+    public function hasAnyRoles(array $roles)
+    {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+
+
+    public function roles()
+    {
+        return $this->belongsToMany(\App\Models\Admin\Role::class);
+    }
+
+
 
 }
