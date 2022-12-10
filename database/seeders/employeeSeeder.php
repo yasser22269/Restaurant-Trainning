@@ -59,5 +59,19 @@ class employeeSeeder extends Seeder
             'office'        => 'intro',
             'status'        => '1',
         ]);
+        DB::table('employees')->insert([
+            'name'          => 'Mohamed',
+            'email'         => 'm.mohamedeid11@gmail.com',
+            'phone'         => '01092845038',
+            'nid'           => '1253111',
+            'password'      => Hash::make('mohamed'),
+            'age'           => '22',
+            'address'       => 'cairo',
+            'salary'        => '4000',
+            'start_date'    => '2022-11-08',
+            'position'      => 'employee',
+            'office'        => 'intro',
+            'status'        => '1',
+        ]);
     }
 }
