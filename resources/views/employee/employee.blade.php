@@ -32,6 +32,7 @@
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>
+                                                    @can('delete')
                                                     <th>NID</th>
                                                     <th>Age</th>
                                                     <th>Address</th>
@@ -40,6 +41,7 @@
                                                     <th>Position</th>
                                                     <th>Office</th>
                                                     <th>Status</th>
+                                                    @endcan
                                                     <th>Operation</th>
                                                 </tr>
                                                 </thead>
@@ -52,6 +54,7 @@
                                                         <td>{{$employee->name}}</td>
                                                         <td>{{$employee->email}}</td>
                                                         <td>{{$employee->phone}}</td>
+                                                        @can('create')
                                                         <td>{{$employee->nid}}</td>
                                                         <td>{{$employee->age}}</td>
                                                         <td>{{$employee->address}}</td>
@@ -60,6 +63,7 @@
                                                         <td>{{$employee->position}}</td>
                                                         <td>{{$employee->office}}</td>
                                                         <td>{{$employee->status}}</td>
+                                                        @endcan
                                                         <td>
                                                             <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#modalCoverExample">Delete</button>
                                                             <a href="{{ route('employee.edit', $employee->id) }}"

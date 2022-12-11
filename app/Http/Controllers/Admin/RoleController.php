@@ -5,10 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Models\Admin\Permission;
 use App\Models\Admin\Role;
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 
 class RoleController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('checkRole:admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +24,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles = Role::with('permissions','employees')->paginate(5);
+        return view('Admin.roles.index' , compact('roles'));
     }
 
     /**
@@ -26,7 +35,10 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        abort_if(Gate::denies('create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $permissions = Permission::all();
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**

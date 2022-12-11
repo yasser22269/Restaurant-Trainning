@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Repository\EmployeeRepositoryInterface;
 use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
+use Gate;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class EmployeeController extends Controller
 {
@@ -14,12 +16,15 @@ class EmployeeController extends Controller
 
     public function __construct(EmployeeRepositoryInterface $employee){
         $this->employee = $employee;
+//        $this->middleware('checkRole:admin');
     }
 
 
     public function index()
     {
         //
+        abort_if(Gate::denies('show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         return $this->employee->index();
     }
 
