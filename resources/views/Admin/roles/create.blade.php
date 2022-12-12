@@ -37,11 +37,14 @@
                                     <div class="card-header d-flex align-items-center bg-white bg-opacity-15 fw-400">
                                         Create Role
                                     </div>
-
-                                    <form method="post" action="{{route('admin.roles.store')}}">
-                                        @csrf
-                                        @include('Admin.roles.partials.form' ,['create' => true])
-                                        <button type="submit" class="btn btn-primary"> Create </button>
+                                    <form method="post" class="row justify-content-center" action="{{route('admin.roles.store')}}">
+                                        <div class="container">
+                                            <div class="col-md-12 text-center">
+                                                @csrf
+                                                @include('Admin.roles.partials.form' ,['create' => true])
+                                                <button type="submit" class="btn btn-primary m-5"> Create </button>
+                                            </div>
+                                        </div>
                                     </form>
 
                                 </div>

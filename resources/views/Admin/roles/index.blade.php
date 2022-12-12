@@ -32,6 +32,7 @@
                                                             <tr>
                                                                 <th>#</th>
                                                                 <th>Name</th>
+                                                                <th>Permissions</th>
                                                                 <th>Operation</th>
                                                             </tr>
                                                         </thead>
@@ -42,6 +43,11 @@
                                                             <tr>
                                                                 <td>{{$i}}</td>
                                                                 <td>{{$role->name}}</td>
+                                                                <td>
+                                                                    @foreach($role->permissions as $key => $item)
+                                                                        <span class="badge badge-info text-green">{{ $item->title }}</span>
+                                                                    @endforeach
+                                                                </td>
                                                                 <td>
                                                                     <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-outline-success">show</a>
                                                                     <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-outline-warning">update</a>

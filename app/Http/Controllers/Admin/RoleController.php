@@ -49,7 +49,11 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        //
+        $role = Role::create($request->all());
+
+        $role->permissions()->sync($request->input('permissions', []));
+
+        return redirect()->route('admin.roles.index')->with('success' , 'New Role Has been Created');
     }
 
     /**
@@ -60,7 +64,11 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        abort_if(Gate::denies('show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $role->load('permissions');
+
+        return view('admin.roles.show', compact('role'));
     }
 
     /**
