@@ -109,6 +109,8 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        abort_if(Gate::denies('delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $role->delete();
         session()->flash('success', 'Role has been deleted successfully');
 
