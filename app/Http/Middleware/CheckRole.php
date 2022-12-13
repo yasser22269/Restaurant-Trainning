@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CheckRole
 {
@@ -16,9 +17,13 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next,$role)
     {
-        if (!auth()->user()->hasAnyRole($role)) {
+        Gate::define($role,function ($user) use ($role){
+            return $user->hasAnyRoles([$role]);
+        });
+        if (Gate::allows($role)){
+            return $next($request);
+        }else{
             abort(403);
         }
-        return $next($request);
     }
 }

@@ -79,7 +79,11 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        abort_if(Gate::denies('update'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $permissions = Permission::all();
+
+        return view('admin.roles.edit', compact('role','permissions'));
     }
 
     /**
@@ -91,7 +95,10 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
+        $role->update($request->all());
+        $role->permissions()->sync($request->input('permissions', []));
+
+        return redirect()->route('admin.roles.index')->with('success' , 'Role Has been Updated Successfully');
     }
 
     /**
@@ -102,6 +109,11 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        session()->flash('success', 'Role has been deleted successfully');
+
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 }

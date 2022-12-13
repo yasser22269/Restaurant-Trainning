@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class IsAdmin
 {
@@ -16,10 +17,15 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->user()->hasAnyRole('admin')) {
+
+        Gate::define('isAdmin',function ($user){
+            return $user->hasAnyRole('admin');
+        });
+
+        if (Gate::allows('isAdmin')){
+            return $next($request);
+        }else{
             abort(403);
         }
-
-        return $next($request);
     }
 }

@@ -31,7 +31,9 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>#</th>
+                                                                @can('isAdmin')
                                                                 <th>Name</th>
+                                                                @endcan
                                                                 <th>Permissions</th>
                                                                 <th>Operation</th>
                                                             </tr>
@@ -42,7 +44,9 @@
                                                             <?php $i++ ?>
                                                             <tr>
                                                                 <td>{{$i}}</td>
+                                                                @can('isAdmin')
                                                                 <td>{{$role->name}}</td>
+                                                                @endcan
                                                                 <td>
                                                                     @foreach($role->permissions as $key => $item)
                                                                         <span class="badge badge-info text-green">{{ $item->title }}</span>
@@ -51,36 +55,11 @@
                                                                 <td>
                                                                     <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-outline-success">show</a>
                                                                     <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-outline-warning">update</a>
-                                                                    <button type="button" class="btn btn-outline-danger me-2" data-bs-toggle="modal" data-bs-target="#modalCoverExample">Delete</button>
+                                                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-role" data-role="{{$role}}" data-route="{{route('admin.roles.destroy' , $role->id)}}">Delete</button>
+
                                                                 </td>
                                                             </tr>
-        {{--                                                    <div class="modal modal-cover fade" id="modalCoverExample">--}}
-        {{--                                                        <div class="modal-dialog">--}}
-        {{--                                                            <div class="modal-content">--}}
-        {{--                                                                <div class="modal-header">--}}
-        {{--                                                                    <h3 class="modal-title">Delete {{ $role->name }}</h3>--}}
-        {{--                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>--}}
-        {{--                                                                </div>--}}
-        {{--                                                                <div class="modal-body">--}}
-        {{--                                                                    <p class="mb-3">Do you want to Delete {{ $role->name }}</p>--}}
-        {{--                                                                </div>--}}
-        {{--                                                                <div class="pt-3">--}}
-        {{--                                                                    <div class="modal-footer">--}}
-        {{--                                                                        <button style="width:15%;" type="button" class="btn btn-secondary"--}}
-        {{--                                                                                data-bs-dismiss="modal">Close</button>--}}
-        {{--                                                                        <form action="{{ route('role.destroy', $role->id ) }}" method="post"--}}
-        {{--                                                                              style="display: inline">--}}
-        {{--                                                                            {{ method_field('delete') }}--}}
-        {{--                                                                            {{ csrf_field() }}--}}
-        {{--                                                                            <input type="hidden" name="id" value="{{ $role->id }}"--}}
-        {{--                                                                                   id="id">--}}
-        {{--                                                                            <button style="width:100%;" class="btn btn-danger">حذف</button>--}}
-        {{--                                                                        </form>--}}
-        {{--                                                                    </div>--}}
-        {{--                                                                </div>--}}
-        {{--                                                            </div>--}}
-        {{--                                                        </div>--}}
-        {{--                                                    </div>--}}
+
                                                         @endforeach
                                                         </tbody>
                                                     </table>
@@ -94,6 +73,36 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- BEGIN #delete-role -->
+                                    <div class="modal fade" id="delete-role" tabindex="-1" role="dialog" aria-labelledby="delete-roleLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="delete-roleLabel">New message</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="text-danger text-bold"> </p>
+                                                    <form method="post" action="#" id="delete-role-formData">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" class="form-control" id="role_id">
+                                                    </form>
+                                                    <input type="hidden" class="form-control" id="route">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-outline-danger delete-role-form" id="delete-role-form">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- END #delete-role -->
+
                                 </div>
                                 <!-- END #datatable -->
                             </div>
@@ -116,4 +125,57 @@
     <!-- END btn-scroll-top -->
     </div>
     <!-- END #app -->
+
 @endsection
+@section('js')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).ready(function() {
+            $('#delete-role').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                var recipient = button.data('role'); // Extract info from data-* attributes
+                var route = button.data('route'); // Extract info from data-* attributes
+
+                var modal = $(this);
+                modal.find('.modal-title').text('Do You Want To Delete  ' + recipient.name);
+                modal.find('.modal-body p').text('You are about to delete ' + recipient.name);
+                modal.find('.modal-body #role_id').val(recipient.id);
+                modal.find('.modal-body #route').val(route);
+            })
+
+            $('.delete-role-form').on('click', function() {
+
+                var form = document.querySelector('#delete-role-formData');
+                var formData = new FormData(form);
+                var route = $("#route").val();
+
+                $.ajax({
+                    url: route,
+                    method: "post",
+                    data: formData,
+
+                    processData: false,
+                    contentType: false,
+                    enctype: "multipart/form-data",
+                    success: function(dataResult){
+                        $('#delete-role').modal('hide');
+                        location.reload();
+                    },
+                    error: function(reject) {
+                        var response = $.parseJSON(reject.responseText);
+                        $.each(response.errors, function(key, val) {
+                            return confirm(val);
+                            $('#delete-role').modal('hide');
+                        })
+                    }
+                });
+
+            });
+        });
+    </script>
+@endsection
+
