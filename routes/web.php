@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('/zone', ZoneController::class);
     Route::resource('employee', EmployeeController::class);
     //    Route::post('changePassword', [EmployeeController::class, 'changePassword'])->name('changePassword');
-    Route::patch('employee/{id}', 'EmployeeController@changePassword')->name('employee.changePassword');
+//    Route::patch('employee/{id}', 'EmployeeController@changePassword')->name('employee.changePassword');
     Route::resource('user', UserController::class);
     Route::resource('timeemp', TimeEmpController::class);
     Route::resource('log', LogController::class);
