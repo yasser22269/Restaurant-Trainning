@@ -16,9 +16,15 @@ class RoleSeeder extends Seeder
     {
         DB::table('roles')->insert([
             'name' => 'admin',
+            'is_system' => true,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
         DB::table('roles')->insert([
             'name' => 'user',
+            'is_system' => false,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
     }
 }

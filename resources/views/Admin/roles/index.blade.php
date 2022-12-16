@@ -52,14 +52,14 @@
                                                                         <span class="badge badge-info text-green">{{ $item->title }}</span>
                                                                     @endforeach
                                                                 </td>
+                                                                @if(!$role->is_system)
                                                                 <td>
                                                                     <a href="{{ route('admin.roles.show', $role->id) }}" class="btn btn-outline-success">show</a>
                                                                     <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-outline-warning">update</a>
                                                                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#delete-role" data-role="{{$role}}" data-route="{{route('admin.roles.destroy' , $role->id)}}">Delete</button>
-
                                                                 </td>
+                                                                    @endif
                                                             </tr>
-
                                                         @endforeach
                                                         </tbody>
                                                     </table>
