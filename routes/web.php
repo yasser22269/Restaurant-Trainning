@@ -12,7 +12,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\TimeEmpController;
-
+use App\Http\Controllers\Admin\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +32,10 @@ Route::group(['middleware'=>['guest']], function(){
     });
 });
 
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'isAdmin']], function(){
+    Route::resource('roles',RoleController::class);
+});
+
 Route::group(['middleware' => ['auth']], function(){
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', function()
@@ -43,17 +47,21 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('Attribute', AttributeController::class);
     Route::resource('Product', ProductController::class);
     Route::resource('/zone', ZoneController::class);
-    Route::resource('Reservations', ReservationController::class);
     Route::resource('employee', EmployeeController::class);
     //    Route::post('changePassword', [EmployeeController::class, 'changePassword'])->name('changePassword');
     Route::patch('employee/{id}', 'EmployeeController@changePassword')->name('employee.changePassword');
     Route::resource('user', UserController::class);
     Route::resource('timeemp', TimeEmpController::class);
     Route::resource('log', LogController::class);
+
+
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
+    Route::resource('Reservations', ReservationController::class);
 
 });
-        Route::prefix('settings')->name('settings.')->group(function () {
-            Route::get('/',[SettingController::class,'index'])->name('index');
-            Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
-        });
+
+
+Route::prefix('settings')->name('settings.')->group(function () {
+    Route::get('/',[SettingController::class,'index'])->name('index');
+    Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
+});

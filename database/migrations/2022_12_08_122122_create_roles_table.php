@@ -16,7 +16,9 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('is_system')->default(false)->comment("System Admins Cannot Be Edited Or Deleted Even By Admins");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -17,8 +17,8 @@
                         <tr>
                             <td> # </td>
                             <td> Table Number </td>
-                            <td> Table Status </td>
-                            <td> Number Of Chair </td>
+{{--                            <td> Table Status </td>--}}
+{{--                            <td> Number Of Chair </td>--}}
                             <td> Operation </td>
                         </tr>
                     </thead>
