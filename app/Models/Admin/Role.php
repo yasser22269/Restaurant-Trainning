@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\Employee;
+use App\Traits\LogTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,6 +12,7 @@ class Role extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use LogTrait;
 
 
     protected $table = 'roles';
