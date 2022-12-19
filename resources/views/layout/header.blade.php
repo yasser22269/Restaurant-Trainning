@@ -22,7 +22,7 @@
 
     <!-- BEGIN brand -->
     <div class="brand">
-        <a href="index.html" class="brand-logo">
+        <a href="{{ url('/') }}" class="brand-logo">
 					<span class="brand-img">
 						<span class="brand-img-text text-theme">H</span>
 					</span>
