@@ -13,7 +13,7 @@
                     <thead>
                         <tr>
                             <td> # </td>
-                            <td> User Name </td>
+                            <td> Employee Name </td>
                             <td> Title </td>
                         </tr>
                     </thead>
@@ -22,7 +22,7 @@
                         @foreach ($log as $log)
                             <tr>
                                 <td>{{ ++$i }}</td>
-                                <td>{{ $log->userName }}</td>
+                                <td>{{ $log->emp->name }}</td>
                                 <td>{{ $log->title }}</td>
                             </tr>
                         @endforeach

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\LogTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    use LogTrait;
 
     protected $table = 'categories';
     public $timestamps = true;

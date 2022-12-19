@@ -10,4 +10,8 @@ class Log extends Model
     protected $table = 'logs';
     public $timestamps = true;
     protected $fillable = array('user_id', 'title');
+
+    public function emp(){
+        return $this->belongsTo(Employee::class , 'user_id');
+    }
 }

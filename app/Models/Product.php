@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Models;
+use App\Traits\LogTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    use LogTrait;
 
     protected $table = 'products';
     public $timestamps = true;

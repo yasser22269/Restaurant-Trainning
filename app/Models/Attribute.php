@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\LogTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
+    use LogTrait;
 
     protected $table = 'attributes';
     public $timestamps = true;

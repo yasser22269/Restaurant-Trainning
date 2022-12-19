@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use App\Traits\LogTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,6 +16,7 @@ class Employee extends Authenticatable
     use Notifiable;
     use HasFactory;
     use HasApiTokens;
+    use LogTrait;
 
     protected $table = 'employees';
     public $timestamps = true;
@@ -28,7 +30,7 @@ class Employee extends Authenticatable
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = bcrypt($value);
     }
-        public function timeEmp()
+    public function timeEmp()
     {
         return $this->hasOne(TimeEmp::class, 'emp_id');
     }

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\LogTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model 
+class Order extends Model
 {
+    use LogTrait;
 
     protected $table = 'order';
     public $timestamps = true;
