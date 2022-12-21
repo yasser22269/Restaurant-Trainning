@@ -20,6 +20,10 @@ class TimeEmpSeeder extends Seeder
             'start_at'         => '12:00:00',
             'end_at'         => '00:00:00',
         ]);
-
+        DB::table('time_emps')->insert([
+            'emp_id'          => '2',
+            'start_at'         => '00:00:00',
+            'end_at'         => '12:00:00',
+        ]);
     }
 }

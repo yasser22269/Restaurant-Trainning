@@ -15,6 +15,7 @@
                             <td> # </td>
                             <td> Employee Name </td>
                             <td> Title </td>
+                            <td> created at </td>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,9 +25,9 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $log->emp->name }}</td>
                                 <td>{{ $log->title }}</td>
+                                <td>{{ $log->created_at }}</td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>

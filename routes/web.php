@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TablesController;
 use App\Http\Controllers\CategoriesController;
@@ -58,10 +59,12 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
     Route::resource('Reservations', ReservationController::class);
 
+
+    Route::prefix('settings')->name('settings.')->group(function () {
+        Route::get('/',[SettingController::class,'index'])->name('index');
+        Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
+    });
 });
 
 
-Route::prefix('settings')->name('settings.')->group(function () {
-    Route::get('/',[SettingController::class,'index'])->name('index');
-    Route::put('/{settings}/update',[SettingController::class,'update'])->name('update');
-});
+

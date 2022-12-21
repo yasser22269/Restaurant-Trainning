@@ -9,7 +9,6 @@
 -- Tables </br>
 -- Logs </br>
 # Tasks Not Done yet
--- if Admin is in the shift </br>
 -- orders Page </br>
 -- pos order Page </br>
 -- pos cook Page </br>
@@ -19,3 +18,4 @@
 -- settings Middleware </br>
 -- reservations if users are booking From before </br>
 -- Dashboard Home Page </br>
+-- DataTable All Tables  </br>

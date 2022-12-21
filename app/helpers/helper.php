@@ -18,7 +18,7 @@ function logsHelper($title){
     //Create Row in Logs
     $Logs = new Log();
     $Logs->user_id= auth()->user()->id;
-    $Logs->title =auth()->user()->name . $title;
+    $Logs->title =auth()->user()->name . ' ' .$title;
     $Logs->save();
     //End Create Row in Logs
     return  $Logs;

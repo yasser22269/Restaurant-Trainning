@@ -15,9 +15,12 @@ class CreateTimeEmpsTable extends Migration
     {
         Schema::create('time_emps', function (Blueprint $table) {
             $table->id();
-            $table->integer('emp_id')->unsigned()->unique();
              $table->time('start_at');
              $table->time('end_at');
+            $table->BigInteger('emp_id')->unsigned();
+            $table->foreign('emp_id')->references('id')->on('employees')
+                ->onDelete('NO ACTION')
+                ->onUpdate('NO ACTION');
 
             $table->timestamps();
         });

@@ -1,8 +1,20 @@
 @extends('layout.app')
 
 @section('content')
+    @if (count($errors) > 0)
+        <div class="row" >
+            <button type="text" class="btn btn-lg btn-block btn-outline-danger"
+                    >
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </button>
+        </div>
+    @endif
     <div id="app" class="app app-full-height app-without-header">
+
         <div class="login">
+
             <!-- BEGIN login-content -->
             <div class="login-content">
                 <form method="POST" action="{{ route('login') }}" name="login_form">
